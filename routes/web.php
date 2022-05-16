@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\LanguageController;
 */
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
-    Route::get('/', [StaterkitController::class, 'home'])->name('home');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 

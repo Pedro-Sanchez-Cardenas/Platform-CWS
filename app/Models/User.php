@@ -9,14 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +23,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone_1',
+        'phone_2',
         'password',
+        'companies_id'
     ];
 
     /**
@@ -58,4 +58,25 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Relations
+    public function pretreatments()
+    {
+        return $this->hasMany(Pretreatment::class, 'user_created_at', 'id');
+    }
+
+    public function operations()
+    {
+        return $this->hasMany(Operation::class, 'user_created_at', 'id');
+    }
+
+    public function productWaters()
+    {
+        return $this->hasOne(ProductWater::class, 'user_created_at', 'id');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'companies_id', 'id');
+    }
 }
