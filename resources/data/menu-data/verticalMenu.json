@@ -72,7 +72,7 @@
                     "submenu": [
                         {
                             "name": "Water Treatment",
-                            "icon": "tool",
+                            "icon": "circle",
                             "slug": "",
                             "submenu": [
                                 {
@@ -92,11 +92,24 @@
                     "submenu": [
                         {
                             "name": "Water Treatment",
-                            "icon": "tool",
+                            "icon": "circle",
                             "slug": "",
                             "submenu": [
                                 {
                                     "url": "/companies/KU3/services/1/water-treatment-types/1/plants",
+                                    "name": "RO",
+                                    "icon": "circle",
+                                    "slug": "page-test"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Elevators",
+                            "icon": "circle",
+                            "slug": "",
+                            "submenu": [
+                                {
+                                    "url": "",
                                     "name": "RO",
                                     "icon": "circle",
                                     "slug": "page-test"

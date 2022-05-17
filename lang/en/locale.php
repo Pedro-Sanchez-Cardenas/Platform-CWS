@@ -14,5 +14,6 @@ return [
     "KU3" => "KU3",
     "Water Treatment" => "Water Treatment",
     "RO" => "RO",
+    "Elevators" => "Elevators",
     "Administration" => "Administration"
 ];
