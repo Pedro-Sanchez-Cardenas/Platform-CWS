@@ -17,4 +17,10 @@ class Service extends Model
     protected $fillable = [
         'name'
     ];
+
+    // Relations
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
 }

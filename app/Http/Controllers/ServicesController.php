@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($company)
     {
-        $breadcrumbs = [
-            ['link' => "home", 'name' => "Home"], ['name' => "Index"]
-        ];
-        return view('content.dashboards.administrative', ['breadcrumbs' => $breadcrumbs]);
+        return view('content.services.index', compact('company'));
     }
 
     /**

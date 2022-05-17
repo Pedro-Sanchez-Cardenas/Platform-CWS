@@ -12,22 +12,20 @@
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg></span>
-                    <input type="search" wire:model="search" class="form-control" placeholder="Company name..."
-                        aria-label="Company Name..." aria-describedby="basic-addon-search2">
+                    <input type="search" wire:model='search' class="form-control" placeholder="Service Name..."
+                        aria-label="Service Name..." aria-describedby="basic-addon-search2">
                 </div>
             </div>
 
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createCompany">Add
-                Company</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createService">Add Services</button>
         </div>
     </head>
-
     <section class="d-flex justify-content-center align-items-center mt-1">
         <div wire:loading='query'>
             <span class="spinner-border text-danger"></span>
         </div>
 
-        @if (isset($companies))
+        @if (isset($services))
             <table wire:loading.remove class="table">
                 <thead class="text-center">
                     <tr>
@@ -39,22 +37,22 @@
                 </thead>
 
                 <tbody class="text-center">
-                    @foreach ($companies as $company)
+                    @foreach ($services as $service)
                         <tr>
                             <td>
                                 {{ $loop->iteration }}
                             </td>
 
                             <td>
-                                {{ $company->name }}
+                                {{ $service->name }}
                             </td>
 
                             <td>
-                                {{ $company->created_at }}
+                                {{ $service->created_at }}
                             </td>
 
                             <td>
-                                <!-- TODO: Agregar acciones en companies module -->
+                                <!-- TODO: Agregar acciones en services module -->
                             </td>
                         </tr>
                     @endforeach
@@ -64,10 +62,9 @@
             <span class="display-2">NO DATA</span>
         @endif
     </section>
-
-    <div class="float-end">{{ $companies->links() }}</div>
+    <div class="float-end">{{ $services->links() }}</div>
 </div>
 
 {{-- Modals --}}
-@include('livewire.company.extras.modals.createCompany')
+@include('livewire.service.extras.modals.createService')
 {{-- Modals End --}}

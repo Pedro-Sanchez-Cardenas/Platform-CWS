@@ -1,10 +1,128 @@
 {
-  "menu": [
-    {
-      "url": "home",
-      "name": "Home",
-      "icon": "home",
-      "slug": "home"
-    }
-  ]
+    "menu": [
+        {
+            "navheader": "Dashboards",
+            "slug": ""
+        },
+        {
+            "url": "/",
+            "name": "Administrative",
+            "icon": "sliders",
+            "slug": "Administrative"
+        },
+        {
+            "navheader": "Super Admin",
+            "slug": ""
+        },
+        {
+            "name": "Settings",
+            "badge": "NEW",
+            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+            "icon": "tool",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "/company",
+                    "name": "Companies",
+                    "icon": "tool",
+                    "slug": ""
+                },
+                {
+                    "name": "Company Services",
+                    "icon": "tool",
+                    "slug": "",
+                    "submenu": [
+                        {
+                            "url": "/company/CWS-MEX/services",
+                            "name": "CWS MEX",
+                            "icon": "tool",
+                            "slug": ""
+                        },
+                        {
+                            "url": "/company/KU3/services",
+                            "name": "KU3",
+                            "icon": "tool",
+                            "slug": ""
+                        }
+                    ]
+                },
+                {
+                    "url": "/company",
+                    "name": "Osmosis Types",
+                    "icon": "tool",
+                    "slug": ""
+                }
+            ]
+        },
+        {
+            "navheader": "Operation",
+            "slug": ""
+        },
+        {
+            "name": "Companies",
+            "badge": "NEW",
+            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+            "icon": "tool",
+            "slug": "",
+            "submenu": [
+                {
+                    "name": "CWS MEX",
+                    "icon": "briefcase",
+                    "slug": "",
+                    "submenu": [
+                        {
+                            "name": "Reverse Osmosis",
+                            "icon": "tool",
+                            "slug": "",
+                            "submenu": [
+                                {
+                                    "url": "/",
+                                    "name": "SWRO",
+                                    "icon": "circle",
+                                    "slug": "page-test"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Elevators",
+                            "icon": "tool",
+                            "slug": "",
+                            "submenu": [
+                                {
+                                    "url": "/",
+                                    "name": "SWRO",
+                                    "icon": "circle",
+                                    "slug": "page-test"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "KU3",
+                    "icon": "briefcase",
+                    "slug": "",
+                    "submenu": [
+                        {
+                            "name": "Reverse Osmosis",
+                            "icon": "tool",
+                            "slug": "",
+                            "submenu": [
+                                {
+                                    "url": "/company/cws/",
+                                    "name": "SWRO",
+                                    "icon": "circle",
+                                    "slug": "page-test"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "navheader": "Administration",
+            "slug": ""
+        }
+    ]
 }
