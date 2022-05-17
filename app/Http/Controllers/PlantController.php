@@ -29,21 +29,7 @@ class PlantController extends Controller
      */
     public function index($company)
     {
-        if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
-
-            $companies = Company::where('name', $company)->first();
-
-
-            $plants = Plant::where('companies_id', $companies->id)->get();
-        } else if (Auth::user()->getRoleNames()->first() == 'Manager') {
-
-            $plants = Plant::where('manager', Auth::id())->get();
-        } else if (Auth::user()->getRoleNames()->first() == 'Operator') {
-
-            $plants = Plant::where('operator', Auth::id())->get();
-        }
-
-        return view('content.operations.plants.index', compact('plants'));
+        return view('content.plants.index', compact('company'));
     }
 
     /**

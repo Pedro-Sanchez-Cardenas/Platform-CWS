@@ -24,11 +24,11 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('companies', CompanyController::class);
-    Route::resource('reverse-osmosis-types', ReverseOsmosisTypeController::class);
+    Route::resource('water-treatment-types', WaterTreatmentTypeController::class);
 
     Route::resource('companies.services', ServicesController::class); // Route para obtener los servicios de cada company
-    Route::resource('companines.services.reverse-osmosis-types.plants', PlantController::class)->whereIn('services', ["reverse-osmosis"]);
-    Route::resource('compannies.services.plants.parameters', ParametersController::class);
+    Route::resource('companies.services.water-treatment-types.plants', PlantController::class);
+    Route::resource('companies.services.water-treatment-types.plants.parameters', ParametersController::class);
 });
 
 

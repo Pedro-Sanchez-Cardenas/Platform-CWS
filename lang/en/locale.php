@@ -12,8 +12,7 @@ return [
     "Companies" => "Companies",
     "CWS MEX" => "CWS MEX",
     "KU3" => "KU3",
-    "Reverse Osmosis" => "Reverse Osmosis",
-    "SWRO" => "SWRO",
-    "Elevators" => "Elevators",
+    "Water Treatment" => "Water Treatment",
+    "RO" => "RO",
     "Administration" => "Administration"
 ];

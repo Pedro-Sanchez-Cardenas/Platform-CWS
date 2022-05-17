@@ -21,6 +21,8 @@ class IndexService extends Component
         'search' => ['except' => ''],
     ];
 
+    protected $paginationTheme = 'bootstrap';
+
 
     public function mount()
     {

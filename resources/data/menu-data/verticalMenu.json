@@ -71,26 +71,13 @@
                     "slug": "",
                     "submenu": [
                         {
-                            "name": "Reverse Osmosis",
+                            "name": "Water Treatment",
                             "icon": "tool",
                             "slug": "",
                             "submenu": [
                                 {
-                                    "url": "/",
-                                    "name": "SWRO",
-                                    "icon": "circle",
-                                    "slug": "page-test"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Elevators",
-                            "icon": "tool",
-                            "slug": "",
-                            "submenu": [
-                                {
-                                    "url": "/",
-                                    "name": "SWRO",
+                                    "url": "/companies/CWS-MEX/services/1/water-treatment-types/1/plants",
+                                    "name": "RO",
                                     "icon": "circle",
                                     "slug": "page-test"
                                 }
@@ -104,13 +91,13 @@
                     "slug": "",
                     "submenu": [
                         {
-                            "name": "Reverse Osmosis",
+                            "name": "Water Treatment",
                             "icon": "tool",
                             "slug": "",
                             "submenu": [
                                 {
-                                    "url": "/company/cws/",
-                                    "name": "SWRO",
+                                    "url": "/companies/KU3/services/1/water-treatment-types/1/plants",
+                                    "name": "RO",
                                     "icon": "circle",
                                     "slug": "page-test"
                                 }

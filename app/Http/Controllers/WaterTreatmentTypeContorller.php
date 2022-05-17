@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ReverseOsmosisTypeController extends Controller
+class WaterTreatmentTypeContorller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ReverseOsmosisTypeController extends Controller
      */
     public function index()
     {
-        return view('content.reverseOsmosisTypes.index');
+        //
     }
 
     /**
