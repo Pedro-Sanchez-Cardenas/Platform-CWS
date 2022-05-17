@@ -36,4 +36,9 @@ class Company extends Model
     public function country() {
         return $this->hasOne(Country::class, 'id', 'countries_id');
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class, 'id', 'services_id');
+    }
 }
