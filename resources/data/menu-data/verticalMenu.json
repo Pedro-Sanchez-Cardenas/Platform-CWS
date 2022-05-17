@@ -22,10 +22,10 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "/company",
+                    "url": "/companies",
                     "name": "Companies",
                     "icon": "tool",
-                    "slug": ""
+                    "slug": "companies.index"
                 },
                 {
                     "name": "Company Services",
@@ -33,13 +33,13 @@
                     "slug": "",
                     "submenu": [
                         {
-                            "url": "/company/CWS-MEX/services",
+                            "url": "/companies/CWS-MEX/services",
                             "name": "CWS MEX",
                             "icon": "tool",
                             "slug": ""
                         },
                         {
-                            "url": "/company/KU3/services",
+                            "url": "/companies/KU3/services",
                             "name": "KU3",
                             "icon": "tool",
                             "slug": ""
@@ -47,10 +47,10 @@
                     ]
                 },
                 {
-                    "url": "/company",
-                    "name": "Osmosis Types",
+                    "url": "/reverse-osmosis-types",
+                    "name": "Reverse Osmosis Types",
                     "icon": "tool",
-                    "slug": ""
+                    "slug": "reverse-osmosis-types.index"
                 }
             ]
         },

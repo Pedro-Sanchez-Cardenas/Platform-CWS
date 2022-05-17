@@ -23,12 +23,12 @@ use App\Http\Controllers\ServicesController;
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('company', CompanyController::class)->whereIn('company', ['CWS-MEX', 'CWS-USA', 'KU3']);
-    Route::resource('reverse-osmosis-type', ReverseOsmosisTypeController::class);
+    Route::resource('companies', CompanyController::class);
+    Route::resource('reverse-osmosis-types', ReverseOsmosisTypeController::class);
 
-    Route::resource('company.services', ServicesController::class)->whereIn(['company'], ['CWS-MEX', 'CWS-USA', 'KU3']); // Route para obtener los servicios de cada company
-    Route::resource('company.services.reverse-osmosis-type.plant', PlantController::class)->whereIn('services', ["reverse-osmosis"]);
-    Route::resource('company.services.plant.parameters', ParametersController::class);
+    Route::resource('companies.services', ServicesController::class); // Route para obtener los servicios de cada company
+    Route::resource('companines.services.reverse-osmosis-types.plants', PlantController::class)->whereIn('services', ["reverse-osmosis"]);
+    Route::resource('compannies.services.plants.parameters', ParametersController::class);
 });
 
 
