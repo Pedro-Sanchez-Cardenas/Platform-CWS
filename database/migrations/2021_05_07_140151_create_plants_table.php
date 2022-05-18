@@ -27,7 +27,7 @@ class CreatePlantsTable extends Migration
             $table->integer('multimedia_filters_quantity')->default('0');
             $table->integer('cisterns_quantity');
 
-            $table->foreignId('companies_id')->constrained();
+            $table->foreignId('companies_id')->constrained(); // muchos a muchos
             $table->foreignId('clients_id')->nullable()->constrained();
             $table->foreignId('operator')->constrained('users');
             $table->foreignId('manager')->nullable()->constrained('users');

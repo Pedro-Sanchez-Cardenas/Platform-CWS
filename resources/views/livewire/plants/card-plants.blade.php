@@ -30,14 +30,14 @@
     </head>
 
     <section class="row mt-1">
-        <div wire:loading='query'>
+        <div wire:loading wire:target='search'>
             <div class="text-center">
                 <span class="spinner-border text-danger"></span>
             </div>
         </div>
 
         @forelse ($plants as $plant)
-            <div wire:loading.remove class="col-sm-1 col-md-6 col-lg-6">
+            <div wire:loading.remove wire:target='search' class="col-sm-1 col-md-4 col-lg-4">
                 <div class="card">
                     @hasanyrole('Super-Admin|Operations-Manager|Administrative-Manager')
                         <div class="d-flex btn-group justify-content-end plant-acctions">
@@ -140,12 +140,12 @@
 
                         <hr>
 
-                        {{-- <div class="btn-group col-12" role="group">
-                        <a href="{{ route('parameters.create', $plant->id) }}" class="btn btn-success"><i
-                                class="fas fa-plus"></i> Parameters</a>
-                        <a href="{{ route('parameters.show', $plant->id) }}" class="btn btn-info"><i
-                                class="far fa-eye"></i> Parameters</a>
-                    </div> --}}
+                        <div class="btn-group col-12" role="group">
+                            {{-- <a href="{{ route('companies.services.water-treatment-types.plants', [$company, $plant->id]) }}" class="btn btn-success"><i
+                                    class="fas fa-plus"></i> Parameters</a> --}}
+                            {{-- <a href="{{ route('parameters.show', $plant->id) }}" class="btn btn-info"><i
+                                    class="far fa-eye"></i> Parameters</a> --}}
+                        </div>
 
                         <table class="table table-bordered mt-2">
                             <thead>

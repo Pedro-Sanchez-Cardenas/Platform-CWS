@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ParametersController;
 use App\Http\Controllers\PlantController;
-use App\Http\Controllers\ReverseOsmosisTypeController;
+use App\Http\Controllers\WaterTreatmentTypeController;
 use App\Http\Controllers\ServicesController;
 
 /*

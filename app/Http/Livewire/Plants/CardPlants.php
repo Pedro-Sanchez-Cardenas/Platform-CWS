@@ -8,7 +8,12 @@ use Livewire\Component;
 
 class CardPlants extends Component
 {
+    // Parameters
     public $parameterCompany;
+    public $parameterService;
+    public $parameterWaterTreatmentTypes;
+
+    // Vars
     public $company;
     public $search;
     public $model;
