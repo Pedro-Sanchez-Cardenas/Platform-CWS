@@ -13,9 +13,11 @@ class IndexService extends Component
 
     public $parameterCompany;
     public $company;
+
     public $search;
     public $model;
     public $fields;
+    public $relationships;
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -26,7 +28,7 @@ class IndexService extends Component
 
     public function mount()
     {
-        $this->company = Company::where('name', $this->parameterCompany)->first();
+        $this->company = Company::where('name', $this->parameterCompany)->with('services')->first();
         // Definimos los campos de la tabla en los que queremos buscar
         $this->fields = ['name'];
         //Definimos el modelo
@@ -36,25 +38,16 @@ class IndexService extends Component
     public function render()
     {
         return view('livewire.service.index-service', [
-            'services' => empty($this->search) ? Service::where('id', $this->company->services_id)->paginate(10) : $this->query(),
+            'company' => empty($this->search) ? $this->company : $this->query(),
         ]);
     }
 
     private function query()
     {
-        return $this->whereConditions()
-            // Si no queremos añadir relationships lo quitamos...
-            //->with($this->relationships)
-            // Por ejemplo...
-            ->paginate(10);
-    }
-
-    private function whereConditions()
-    {
         $query = $this->model::Query();
 
         foreach ($this->fields as $field) {
-            $query = $query->orWhere($field, 'like', '%' . $this->search . '%');
+            $query = Service::where($field, 'like', '%' . $this->search . '%')->get();
         }
 
         return $query;

@@ -1,5 +1,4 @@
 <div>
-
     <head>
         <div class="d-flex justify-content-between align-items-center">
             <div class="w-25">
@@ -17,7 +16,8 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#createService">
+            <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal"
+                data-bs-target="#createService">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-plus-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -33,7 +33,7 @@
             <span class="spinner-border text-danger"></span>
         </div>
 
-        @if (isset($services))
+        @if (isset($company->services[0]))
             <table wire:loading.remove class="table">
                 <thead class="text-center">
                     <tr>
@@ -45,7 +45,7 @@
                 </thead>
 
                 <tbody class="text-center">
-                    @foreach ($services as $service)
+                    @foreach ($company->services as $service)
                         <tr>
                             <td>
                                 {{ $loop->iteration }}
@@ -56,7 +56,7 @@
                             </td>
 
                             <td>
-                                {{ $service->created_at }}
+                                {{ $service->pivot->created_at }}
                             </td>
 
                             <td>
@@ -70,7 +70,7 @@
             <span class="display-2">NO DATA</span>
         @endif
     </section>
-    <div class="float-end">{{ $services->links() }}</div>
+    {{-- <div class="float-end">{{ $services->links() }}</div> --}}
 </div>
 
 {{-- Modals --}}

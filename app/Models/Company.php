@@ -38,13 +38,13 @@ class Company extends Model
         return $this->hasOne(Country::class, 'id', 'countries_id');
     }
 
-    public function services()
-    {
-        return $this->hasMany(Service::class, 'id', 'services_id');
-    }
-
     public function plants()
     {
         return $this->hasMany(Plant::class, 'id', 'companies_id');
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class)->withTimestamps();
     }
 }
