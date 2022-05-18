@@ -24,11 +24,10 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('companies', CompanyController::class);
-    Route::resource('water-treatment-types', WaterTreatmentTypeController::class);
 
     Route::resource('companies.services', ServicesController::class); // Route para obtener los servicios de cada company
-    Route::resource('companies.services.water-treatment-types.plants', PlantController::class);
-    Route::resource('companies.services.water-treatment-types.plants.parameters', ParametersController::class);
+    Route::resource('companies.services.plants', PlantController::class);
+    Route::resource('companies.services.plants.parameters', ParametersController::class);
 });
 
 

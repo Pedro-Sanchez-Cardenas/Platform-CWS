@@ -45,12 +45,6 @@
                             "slug": ""
                         }
                     ]
-                },
-                {
-                    "url": "/reverse-osmosis-types",
-                    "name": "Reverse Osmosis Types",
-                    "icon": "tool",
-                    "slug": "reverse-osmosis-types.index"
                 }
             ]
         },
@@ -76,7 +70,7 @@
                             "slug": "",
                             "submenu": [
                                 {
-                                    "url": "/companies/CWS-MEX/services/1/water-treatment-types/1/plants",
+                                    "url": "/companies/CWS-MEX/services/1/plants",
                                     "name": "RO",
                                     "icon": "circle",
                                     "slug": "page-test"
@@ -96,7 +90,7 @@
                             "slug": "",
                             "submenu": [
                                 {
-                                    "url": "/companies/KU3/services/1/water-treatment-types/1/plants",
+                                    "url": "/companies/KU3/services/1/plants",
                                     "name": "RO",
                                     "icon": "circle",
                                     "slug": "page-test"
