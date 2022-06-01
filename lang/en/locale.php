@@ -8,6 +8,7 @@ return [
     "Company Services" => "Company Services",
     "Operation" => "Operation",
     "Companies" => "Companies",
+    "Services" => "Services",
     "CWS MEX" => "CWS MEX",
     "CWS USA" => "CWS USA",
     "KU3" => "KU3",

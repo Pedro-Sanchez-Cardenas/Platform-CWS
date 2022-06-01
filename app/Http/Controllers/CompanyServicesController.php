@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class CompanyServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($company)
     {
-        return "services index";
+        return view('content.services.index', compact('company'));
     }
 
     /**

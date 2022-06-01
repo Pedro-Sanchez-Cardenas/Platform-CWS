@@ -3,22 +3,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PlantRequest;
-use App\Models\BillingPeriod;
-use App\Models\Cistern;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\MembraneActiveArea;
 use App\Models\Plant;
-use App\Models\PlantContract;
 use App\Models\PlantType;
 use App\Models\PolishFilterType;
-use App\Models\Train;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class PlantController extends Controller
 {
@@ -27,9 +19,9 @@ class PlantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company)
+    public function index($company, $service)
     {
-        return view('content.plants.index', compact('company'));
+        return view('content.plants.index', compact('company', 'service'));
     }
 
     /**
@@ -59,7 +51,7 @@ class PlantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PlantRequest $request)
+    /*public function store(Request $request)
     {
         try {
             DB::transaction(function () use ($request) {
@@ -166,7 +158,7 @@ class PlantController extends Controller
         }
 
         return redirect()->route('Plants.index')->with('success', 'Registered Plant');
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -174,10 +166,10 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    /*public function show($id)
     {
         //
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -206,7 +198,7 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PlantRequest $request, $id)
+    /*public function update(Request $request, $id)
     {
         //$cover_path = Storage::put('public/covers/plants', $request->cover);
 
@@ -230,16 +222,16 @@ class PlantController extends Controller
         }
 
         // Creamos Train Riego
-        //TODO Crear el apartado de riego
+        /TODO Crear el apartado de riego
         /*
             Train::create([
                 'plants_id' => $plantId,
                 //capacity nullable,
                 'type' => 'RIEGO'
             ]);
-        */
+        *
         return redirect()->route('Plants.index');
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -247,12 +239,12 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    /*public function destroy($id)
     {
         Train::where('plants_id', $id)->delete();
         Cistern::where('plants_id', $id)->delete();
         Plant::find($id)->delete();
 
         return redirect()->route('Plants.index');
-    }
+    }*/
 }

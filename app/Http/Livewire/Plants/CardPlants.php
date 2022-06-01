@@ -9,12 +9,13 @@ use Livewire\Component;
 class CardPlants extends Component
 {
     // Parameters
-    public $parameterCompany;
-    public $parameterService;
-    public $parameterWaterTreatmentTypes;
-
-    // Vars
     public $company;
+
+    // Data requerida por la vista
+    public Company $companyData;
+    public $service;
+
+    // Compenentes del Search
     public $search;
     public $model;
     public $fields;
@@ -25,17 +26,17 @@ class CardPlants extends Component
 
     public function mount()
     {
-        $this->company = Company::where('name', $this->parameterCompany)->first();
+        $this->companyData = Company::where('name', $this->company)->first();
         // Definimos los campos de la tabla en los que queremos buscar
         $this->fields = ['name'];
         //Definimos el modelo
-        $this->model = PLant::class;
+        $this->model = Plant::class;
     }
 
     public function render()
     {
         return view('livewire.plants.card-plants', [
-            'plants' => empty($this->search) ? Plant::where('companies_id', $this->company->id)->paginate(10) : $this->query()
+            'plants' => empty($this->search) ? Plant::where('companies_id', $this->companyData->id)->paginate(10) : $this->query()
         ]);
     }
 
@@ -53,7 +54,7 @@ class CardPlants extends Component
         $query = $this->model::Query();
 
         foreach ($this->fields as $field) {
-            $query = $query->where('companies_id', $this->company->id)->Where($field, 'like', '%' . $this->search . '%');
+            $query = $query->where('companies_id', $this->companyData->id)->Where($field, 'like', '%' . $this->search . '%');
         }
 
         return $query;

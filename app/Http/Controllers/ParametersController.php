@@ -2,22 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ParametersRequest;
-use App\Models\Booster;
-use App\Models\Chemical;
-use App\Models\Cistern;
-use App\Models\PolishFilter;
-use App\Models\MultimediaFilter;
-use App\Models\Operation;
 use App\Models\Plant;
-use App\Models\Pretreatment;
-use App\Models\ProductionReading;
-use App\Models\ProductWater;
-use App\Models\Train;
-use App\Models\UserAssistance;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use PDF;
 
 class ParametersController extends Controller
@@ -34,57 +20,26 @@ class ParametersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /**
-     *  Esta funcion fue deshabilitada ya que se mejoró la vista de plantas index con el fin de mantener la practisidad.
-     */
-
-    /*********************************************************
-     * Posible eliminación del sistema ya que no hay un uso fundamental en el sistema por el momento
-     *********************************************************
-     */
-
-    /*public function index()
+    public function index($plantId)
     {
-        if ((auth()->user()->getRoleNames()[0] == 'Super-Admin') || (auth()->user()->getRoleNames()[0] == 'Director') || (auth()->user()->getRoleNames()[0] == 'Operations-Manager') || (auth()->user()->getRoleNames()[0] == 'Administrative-Manager')) {
+        $plant = Plant::find($plantId);
 
-            $plants = Plant::all();
-
-        } else if(auth()->user()->getRoleNames()->first() == 'Manager'){
-
-            $plants = Plant::where('manager', Auth::id())->get();
-
-        } else if(auth()->user()->getRoleNames()->first() == 'Operator'){
-
-            $plants = Plant::where('attendant', Auth::id())->get();
-
-        }
-        return view('content.operations.parameters.index');
-    }*/
+        return view('content.parameters.index', compact('plant'));
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($company, $service, $plant)
     {
-        $plant = Plant::find($id);
-        $typeUser = auth()->user()->getRoleNames()->first();
+        $comp = $company;
+        $serv = $service;
 
-        if ($typeUser == 'Operator') {
-            //$asistencia = UserAssistance::where('user_id', Auth::id())->whereDate('created_at', Carbon::now()->toDateString())->get();
+        $plantData = Plant::find($plant);
 
-            return view('content.operations.parameters.create', compact('plant', 'typeUser'));
-
-            /* if ($asistencia->count() > 0) {
-                return view('parameters.create', compact('plant', 'typeUser'));
-            } else {
-                return redirect()->route('index')->with('alert', 'first enter your attendance');
-            }*/
-        } else {
-
-            return view('content.operations.parameters.create', compact('plant', 'typeUser'));
-        }
+        return view('content.parameters.create', compact('plantData', 'comp', 'serv'));
     }
 
     /**
@@ -93,7 +48,7 @@ class ParametersController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ParametersRequest $request)
+    /*public function store(Request $request)
     {
         try {
             DB::transaction(function () use ($request) {
@@ -207,7 +162,7 @@ class ParametersController extends Controller
                     if ($plant->irrigation == 'yes') {
                         /**
                          * Irrigation
-                         */
+                         *
                         ProductionReading::create([
                             'product_waters_id' => $product_water->id,
                             'trains_id' => $trAll->where('type', 'Irrigation')->last()->id,
@@ -219,7 +174,7 @@ class ParametersController extends Controller
 
                     /**
                      * Municipal
-                     */
+                     *
                     ProductionReading::create([
                         'product_waters_id' => $product_water->id,
                         'trains_id' => $trAll->where('type', 'Municipal')->last()->id,
@@ -250,11 +205,11 @@ class ParametersController extends Controller
                     ]);
                 }
             });
-        } catch (\Exeption $e) {
+        } catch (Exception $e) {
             return redirect()->route('Parameters.index')->with('error', 'An error occurred!');
         }
         return redirect()->route('Parameters.index')->with('success', 'Successful Registration!');
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -262,11 +217,14 @@ class ParametersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($company, $service, $plant ,$id)
     {
-        $plant = Plant::find($id);
+        $comp = $company;
+        $serv = $service;
+        $plan = $plant;
+        $para = $id;
 
-        return view('content.operations.parameters.show', compact('plant'));
+        return view('content.parameters.show', compact('comp', 'serv', 'plan', 'para'));
     }
 
     public function exportPDF($plant, $date_range = null)
@@ -346,10 +304,10 @@ class ParametersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ParametersRequest $request, $id)
+    /*public function update(Request $request, $id)
     {
         //
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -357,8 +315,8 @@ class ParametersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    /*public function destroy($id)
     {
         //
-    }
+    }*/
 }

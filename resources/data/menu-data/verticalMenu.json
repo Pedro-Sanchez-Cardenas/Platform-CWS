@@ -28,6 +28,12 @@
                     "slug": "companies.index"
                 },
                 {
+                    "url": "/services",
+                    "name": "Services",
+                    "icon": "tool",
+                    "slug": "services.index"
+                },
+                {
                     "name": "Company Services",
                     "icon": "tool",
                     "slug": "",

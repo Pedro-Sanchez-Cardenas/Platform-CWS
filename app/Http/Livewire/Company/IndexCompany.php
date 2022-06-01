@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class IndexCompany extends Component
 {
     use WithPagination;
+
     public $search;
     public $model;
     public $fields;
