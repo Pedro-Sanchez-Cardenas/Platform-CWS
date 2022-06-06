@@ -6,7 +6,7 @@ use App\Models\Plant;
 use App\Models\Company;
 use Livewire\Component;
 
-class CardPlants extends Component
+class IndexPlants extends Component
 {
     // Parameters
     public $company;
@@ -33,13 +33,6 @@ class CardPlants extends Component
         $this->model = Plant::class;
     }
 
-    public function render()
-    {
-        return view('livewire.plants.card-plants', [
-            'plants' => empty($this->search) ? Plant::where('companies_id', $this->companyData->id)->paginate(10) : $this->query()
-        ]);
-    }
-
     private function query()
     {
         return $this->whereConditions()
@@ -58,5 +51,12 @@ class CardPlants extends Component
         }
 
         return $query;
+    }
+
+    public function render()
+    {
+        return view('livewire.plants.index-plants', [
+            'plants' => empty($this->search) ? Plant::where('companies_id', $this->companyData->id)->paginate(10) : $this->query()
+        ]);
     }
 }
