@@ -207,10 +207,6 @@
                                     <span
                                         class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
                                     <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
-
-                                    <div x-data="getDiffDate('{{ $plant->product_waters->first()->created_at  }}')">
-
-                                    </div>
                                 @else
                                     <span class="text-danger">N/A</span>
                                 @endif

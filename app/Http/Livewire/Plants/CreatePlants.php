@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
-
 class UploadPhotoWithPreview extends Component
 {
     use WithFileUploads;
@@ -46,7 +45,6 @@ class CreatePlants extends Component
     public $multiplepdf;
     public $plants_cover;
     public $years;
-
 
 
     // Costs
@@ -134,7 +132,7 @@ class CreatePlants extends Component
             'boosterc' => 'no',
             'feed_flow' => 'no',
             'permeate_flow' => 'no',
-            'reject_flow'  => 'no'
+            'reject_flow' => 'no'
         ]);
 
         $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
@@ -181,7 +179,7 @@ class CreatePlants extends Component
             'oym_fixed' => $this->oymFixed,
             'remineralitation' => $this->remineralisationM3,
             'total_m3 ' => 0,
-            'total_month'  => 0,
+            'total_month' => 0,
             'years' => $this->contract['yearsOfContract'],
             'from' => $this->contract['from'],
             'till' => $this->contract['till'], //nullable

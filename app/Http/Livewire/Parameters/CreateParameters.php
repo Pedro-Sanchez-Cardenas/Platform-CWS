@@ -13,7 +13,6 @@ use App\Models\Plant;
 use App\Models\Pretreatment;
 use App\Models\ProductionReading;
 use App\Models\ProductWater;
-use App\Models\Service;
 use App\Models\Train;
 use Carbon\Carbon;
 use Exception;
@@ -27,7 +26,7 @@ class CreateParameters extends Component
     public $company;
     public $service;
 
-    protected $listeners = ['confirmParameters', 'successAlert', 'errorAlert'];
+    protected $listeners = ['confirmParameters'];
 
     // Inputs
     // Pretreatment
@@ -60,6 +59,12 @@ class CreateParameters extends Component
 
     public $observations;
 
+    public function mount()
+    {
+
+
+    }
+
     protected function rules()
     {
         return [
@@ -68,7 +73,7 @@ class CreateParameters extends Component
             'pump.well.*' => ['sometimes', 'required', 'string', 'min:0'],
             'pump.feed.*' => ['sometimes', 'required', 'string', 'min:0'],
 
-            // Frecuencies
+            // Frequencies
             'pump.wellf.*' => ['sometimes', 'required', 'string', 'min:0'],
             'pump.feedf.*' => ['sometimes', 'required', 'string', 'min:0'],
             // Fin Array pump
@@ -92,7 +97,7 @@ class CreateParameters extends Component
 
             //'filtros' => 'required|min:1|array',
 
-            // Operacion
+            // Operation
             'hp' => 'required|min:4|array:amp,fre,in,out', // We validate the array
             'hp.amp.*' => ['required', 'string', 'min:0'],
             'hp.fre.*' => ['required', 'string', 'min:0'],
@@ -136,7 +141,7 @@ class CreateParameters extends Component
             'reject.pre.*' => ['required', 'string', 'min:0'],
             'reject.flo.*' => ['nullable', 'string', 'min:0'],
 
-            // Agua Producto
+            // Aqua Product
             'hardness' => ['required', 'string', 'min:0'],
 
             'tds' => ['required', 'string', 'min:0'],
@@ -176,13 +181,7 @@ class CreateParameters extends Component
 
             'kl1' => ['required', 'string', 'min:0'],
 
-            'kl2' => ['required', 'string', 'min:0'],
-
-            /*
-            'typeUser' => [
-                'required',
-                Rule::in(['Super-Admin', 'Operations-Manager', 'Manager', 'Operator']),
-            ],*/
+            'kl2' => ['required', 'string', 'min:0']
         ];
     }
 
@@ -387,7 +386,7 @@ class CreateParameters extends Component
 
             $this->dispatchBrowserEvent('successAlert');
         } catch (Exception $e) {
-            $this->dispatchBrowserEvent('errorAlert');
+            $this->dispatchBrowserEvent('errorAlert', $e);
         }
     }
 

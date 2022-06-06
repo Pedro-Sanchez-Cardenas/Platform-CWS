@@ -18,8 +18,6 @@ class IndexCompany extends Component
         'search' => ['except' => ''],
     ];
 
-    protected $paginationTheme = 'bootstrap';
-
     public function mount()
     {
         // Definimos los campos de la tabla en los que queremos buscar
