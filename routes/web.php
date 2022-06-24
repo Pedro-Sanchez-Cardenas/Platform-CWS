@@ -8,6 +8,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ParametersController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     Route::resource('companies', CompanyController::class);
     Route::resource('services', ServicesController::class);
+    Route::resource('users', UsersController::class);
 
     Route::resource('companies.services', CompanyServicesController::class)->only('index', 'create', 'update'); // Route para obtener los servicios de cada company
     Route::resource('companies.services.plants', PlantController::class)->only('index', 'create', 'update');
