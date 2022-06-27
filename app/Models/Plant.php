@@ -42,7 +42,7 @@ class Plant extends Model
     // Relations
     public function company()
     {
-        return $this->hasOne(Company::class, 'id', 'companies_id');
+        return $this->belongsTo(Company::class, 'companies_id', 'id');
     }
 
     public function client()
@@ -77,7 +77,7 @@ class Plant extends Model
 
     public function plant_type()
     {
-        return $this->hasOne(PlantType::class, 'id', 'plant_types_id');
+        return $this->belongsTo(PlantType::class, 'plant_types_id', 'id');
     }
 
     public function trains()
@@ -97,16 +97,16 @@ class Plant extends Model
 
     public function pretreatments()
     {
-        return $this->hasMany(Pretreatment::class, 'plants_id', 'id')->orderBy('id', 'DESC');
+        return $this->hasMany(Pretreatment::class, 'plants_id', 'id')->orderBy('parameters_date', 'DESC');
     }
 
     public function operations()
     {
-        return $this->hasMany(Operation::class, 'plants_id', 'id')->orderBy('id', 'DESC');
+        return $this->hasMany(Operation::class, 'plants_id', 'id')->orderBy('parameters_date', 'DESC');
     }
 
     public function product_waters()
     {
-        return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('id', 'DESC');
+        return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('parameters_date', 'DESC');
     }
 }

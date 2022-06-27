@@ -40,7 +40,8 @@ class Operation extends Model
 
         'observations',
         'user_created_at',
-        'user_updated_at'
+        'user_updated_at',
+        'parameters_date'
     ];
 
     public function plant()

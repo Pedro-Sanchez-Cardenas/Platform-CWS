@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plant;
+use App\Models\ProductWater;
 use Carbon\Carbon;
 use PDF;
 
@@ -39,7 +40,15 @@ class ParametersController extends Controller
 
         $plantData = Plant::find($plant);
 
-        return view('content.parameters.create', compact('plantData', 'comp', 'serv'));
+        // Verificamos si la planta ya tiene sus parametros del dia (HOY).
+        $aux_parameters = ProductWater::where('plants_id', $plant)->whereDate('created_at', Carbon::now()->format('y-m-d'))->first();
+
+        // if ($aux_parameters) {
+        //     // ya hay parametros de hoy para esta planta.
+        //     return redirect()->back()->with('alert', "Ya hay parametros de esta planta");
+        // } else {
+            return view('content.parameters.create', compact('plantData', 'comp', 'serv'));
+        // }
     }
 
     /**
@@ -217,7 +226,7 @@ class ParametersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company, $service, $plant ,$id)
+    public function show($company, $service, $plant, $id)
     {
         $comp = $company;
         $serv = $service;

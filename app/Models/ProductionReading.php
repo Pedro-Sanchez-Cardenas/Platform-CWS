@@ -18,7 +18,8 @@ class ProductionReading extends Model
         'product_waters_id',
         'trains_id',
         'reading',
-        'type'
+        'type',
+        'parameters_date'
     ];
 
     public function train()

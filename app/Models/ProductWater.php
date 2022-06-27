@@ -29,7 +29,8 @@ class ProductWater extends Model
         'ope_mana_observation',
 
         'user_created_at',
-        'user_updated_at'
+        'user_updated_at',
+        'parameters_date'
     ];
 
     public function plant()
