@@ -21,11 +21,12 @@ class CreatePlantsTable extends Migration
             $table->double('installed_capacity')->nullable();
             $table->double('design_limit')->nullable();
 
-            $table->foreignId('polish_filter_types_id')->nullable('polish_filter_types_id');
+            $table->foreignId('polish_filter_types_id')->nullable();
             $table->integer('polish_filters_quantity')->default('0');
 
             $table->integer('multimedia_filters_quantity')->default('0');
             $table->integer('cisterns_quantity');
+            $table->foreignId('personalitation_plants_id')->constrained();
 
             $table->foreignId('companies_id')->constrained();
             $table->foreignId('clients_id')->nullable()->constrained();
@@ -34,7 +35,6 @@ class CreatePlantsTable extends Migration
             $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
 
-            $table->foreignId('personalitation_plants_id')->constrained();
             $table->foreignId('plant_types_id')->constrained();
             $table->foreignId('countries_id')->constrained();
 

@@ -26,7 +26,8 @@ class User extends Authenticatable
         'phone_1',
         'phone_2',
         'password',
-        'companies_id'
+        'companies_id',
+        'services_id'
     ];
 
     /**
@@ -78,5 +79,9 @@ class User extends Authenticatable
     public function company()
     {
         return $this->belongsTo(Company::class, 'companies_id', 'id');
+    }
+
+    public function plants(){
+        return $this->belongsTo(Plant::class, 'users_id', 'id');
     }
 }

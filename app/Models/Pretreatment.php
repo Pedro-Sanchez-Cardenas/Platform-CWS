@@ -29,7 +29,8 @@ class Pretreatment extends Model
         'observations',
 
         'user_created_at',
-        'user_updated_at' // nullable
+        'user_updated_at', // nullable
+        'parameters_date'
     ];
 
     public function plant()

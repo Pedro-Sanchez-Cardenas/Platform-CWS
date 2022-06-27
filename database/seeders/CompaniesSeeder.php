@@ -23,9 +23,10 @@ class CompaniesSeeder extends Seeder
             'zip' => '97115',
             'suburb' => 'Hacienda Dzodzail',
             'countries_id' => '1',
-            //'services_id' => '1',
-            'currencies_id' => '1'
+            'currencies_id' => '1',
+            'status' => 0
         ]);
+
 
         Company::create([
             'name' => 'CWS-MEX',
@@ -36,15 +37,15 @@ class CompaniesSeeder extends Seeder
             'zip' => '97115',
             'suburb' => 'Hacienda Dzodzail',
             'countries_id' => '1',
-            'services_id' => '1',
-            'currencies_id' => '1'
-        ]);
+            'currencies_id' => '1',
+            'status' => 1
+        ])->services()->attach(1);
 
         Company::create([
             'name' => 'CWS-USA',
             'countries_id' => '2',
-            'services_id' => '1',
-            'currencies_id' => '2'
+            'currencies_id' => '2',
+            'status' => 0
         ]);
 
         Company::create([
@@ -56,8 +57,8 @@ class CompaniesSeeder extends Seeder
             'zip' => 'JMAKN05',
             'suburb' => 'KINGSTON',
             'countries_id' => '3',
-            'services_id' => '1',
-            'currencies_id' => '3'
-        ]);
+            'currencies_id' => '3',
+            'status' => 1
+        ])->services()->attach(1);
     }
 }
