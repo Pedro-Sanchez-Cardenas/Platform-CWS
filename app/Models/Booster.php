@@ -22,7 +22,8 @@ class Booster extends Model
         'px',
         'booster_flow',
         'booster_pressures',
-        'booster_pressures_total'
+        'booster_pressures_total',
+        'parameters_date'
     ];
 
     // Relations

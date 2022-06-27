@@ -16,8 +16,10 @@ use App\Models\ProductWater;
 use App\Models\Train;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class CreateParameters extends Component
 {
@@ -26,7 +28,8 @@ class CreateParameters extends Component
     public $company;
     public $service;
 
-    protected $listeners = ['confirmParameters'];
+    // AddOldParameters
+    public $addOldParameters;
 
     // Inputs
     // Pretreatment
@@ -59,10 +62,21 @@ class CreateParameters extends Component
 
     public $observations;
 
-    public function mount()
+    public $parameters_date;
+
+    public $trainsStatus = [];
+
+    protected $listeners = ['confirmParameters'];
+
+    public function mount(Request $request)
     {
-
-
+        $url = $request->fullUrl();
+        $parametros = explode("?", $url);
+        if (count($parametros) > 1) {
+            $this->addOldParameters = true;
+        } else {
+            $this->addOldParameters = false;
+        }
     }
 
     protected function rules()
@@ -95,8 +109,6 @@ class CreateParameters extends Component
             'filters.*.*' => ['nullable'],
             // Fin de Polish Filters
 
-            //'filtros' => 'required|min:1|array',
-
             // Operation
             'hp' => 'required|min:4|array:amp,fre,in,out', // We validate the array
             'hp.amp.*' => ['required', 'string', 'min:0'],
@@ -111,7 +123,7 @@ class CreateParameters extends Component
                 'string'
             ],
 
-            'booster' => 'nullable|min:0|array', // We validate the array
+            'booster' => 'nullable|min:0|array:amp,fre,co,cp,pre', // We validate the array
             'booster.amp.*.*' => ['sometimes', 'required', 'string', 'min:0'],
             'booster.fre.*.*' => ['sometimes', 'required', 'string', 'min:0'],
             'booster.co.*.*' => ['sometimes', 'required', 'string', 'min:0'],
@@ -119,7 +131,7 @@ class CreateParameters extends Component
             'booster.pre.*.*' => ['sometimes', 'required', 'string', 'min:0'],
 
             'px' => 'nullable|min:0|array',
-            'px.*.*' => ['sometimes', 'string', 'min:0'],
+            'px.*.*' => ['sometimes', 'required', 'string', 'min:0'],
 
             'ph' => 'required|min:2|array:ope,pro', // We validate the array
             'ph.ope.*' => ['required', 'string', 'min:0'],
@@ -130,27 +142,34 @@ class CreateParameters extends Component
 
             'feed' => 'required|min:1|array:ope,flo', // We validate the array
             'feed.ope.*' => ['required', 'string', 'min:0'],
-            'feed.flo.*' => ['nullable', 'string', 'min:0'],
+            'feed.flo.*' => ['sometimes', 'required', 'string', 'min:0'],
 
             'permeate' => 'required|min:1|array:ope,flo', // We validate the array
             'permeate.ope.*' => ['required', 'string', 'min:0'],
-            'permeate.flo.*' => ['nullable', 'string', 'min:0'],
+            'permeate.flo.*' => ['sometimes', 'required', 'string', 'min:0'],
 
             'reject' => 'required|min:1|array:ope,pre,flo', // We validate the array
             'reject.ope.*' => ['required', 'string', 'min:0'],
             'reject.pre.*' => ['required', 'string', 'min:0'],
-            'reject.flo.*' => ['nullable', 'string', 'min:0'],
+            'reject.flo.*' => ['sometimes', 'required', 'string', 'min:0'],
 
             // Aqua Product
             'hardness' => ['required', 'string', 'min:0'],
-
             'tds' => ['required', 'string', 'min:0'],
-
             'h2s' => ['required', 'string', 'min:0'],
 
-            'free_chlorine' => 'nullable|string|min:0',
+            'free_chlorine' => [
+                'required',
+                'string',
+                'min:0'
+            ],
 
-            'chloride' => 'nullable|string|min:0',
+            'chloride' => [
+                'nullable',
+                Rule::requiredIf($this->plant->personalitation_plant->chloride === 'yes'),
+                'string',
+                'min:0'
+            ],
 
             'observations' => 'nullable|array:pre,ope,prw', // We validate the array
             'observations.pre.*' => ['nullable', 'string', 'min:5', 'max:350'],
@@ -158,30 +177,44 @@ class CreateParameters extends Component
             'observations.prw' => ['nullable', 'string', 'min:5', 'max:350'],
 
             'reading' => 'required|min:1|array', // We validate the array
-            'reading.*' => ['required', 'string', 'min:0'],
-
-            'irrigation' => ['nullable', 'string', 'min:0'],
+            'reading.*' => [
+                'required',
+                'string',
+                'min:0'
+            ],
+            'irrigation' => [
+                'nullable',
+                Rule::requiredIf($this->plant->personalitation_plant->irrigation === 'yes'),
+                'string',
+                'min:0'
+            ],
 
             'municipal' => ['required', 'string', 'min:0'],
 
-            'tank' => 'required|min:0|array',
-            'tank.*' => ['required', 'integer', 'min:0', 'max:100'],
+            'tank' => 'required|min:1|array',
+            'tank.*' => [
+                'required',
+                'integer',
+                'min:0',
+                'max:100'
+            ],
 
             'calcium_chloride' => ['required', 'string', 'min:0'],
-
             'sodium_carbonate' => ['required', 'string', 'min:0'],
-
             'sodium_hypochloride' => ['required', 'string', 'min:0'],
-
             'antiscalant' => ['required', 'string', 'min:0'],
-
             'sodium_hydroxide' => ['required', 'string', 'min:0'],
-
             'hydrochloric_acid' => ['required', 'string', 'min:0'],
-
             'kl1' => ['required', 'string', 'min:0'],
+            'kl2' => ['required', 'string', 'min:0'],
 
-            'kl2' => ['required', 'string', 'min:0']
+            'parameters_date' => [
+                'nullable',
+                Rule::requiredIf($this->addOldParameters == true),
+                Rule::unique('product_waters'),
+                'date',
+                'before:today'
+            ]
         ];
     }
 
@@ -211,6 +244,7 @@ class CreateParameters extends Component
                 // Consultamos el ultimo id para que este mismo nos sirva para agrupar los registros
                 $registerPre = Pretreatment::latest('id')->first();
                 $registerOpe = Operation::latest('id')->first();
+
                 for ($t = 1; $t <= (count($trains) * 2); $t++) {
                     // Pretreatment
                     if ($t % 2 != 0) {
@@ -222,10 +256,11 @@ class CreateParameters extends Component
                             'feed_pump' => isset($this->pump['feed'][$t]) ? $this->pump['feed'][$t] : null,
                             'frecuencies_well_pump' => isset($this->pump['wellf'][$t]) ? $this->pump['wellf'][$t] : null,
                             'frecuencies_feed_pump' => isset($this->pump['feedf'][$t]) ? $this->pump['feedf'][$t] : null,
-                            'backwash' => isset($this->backwash[$t]) ? $this->backwash[$t] : null,
+                            'backwash' => isset($this->backwash[$t]) ?? null,
                             'observations' => isset($this->observations['pre'][$t]) ? $this->observations['pre'][$t] : null,
                             'user_created_at' => Auth::id(),
-                            //'user_updated_at' => Auth::id(),
+                            'user_updated_at' => Auth::id(),
+                            'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                         ]);
 
                         $pretreatment = Pretreatment::latest('id')->first();
@@ -237,6 +272,7 @@ class CreateParameters extends Component
                                 'trains_id' => $trains[$contTrains]->id,
                                 'in' => $this->mm != '' ? $this->mm['in'][$t][$m] : 0,
                                 'out' => $this->mm != '' ? $this->mm['out'][$t][$m] : 0,
+                                'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                             ]);
                         }
                         // Multimedia Filters end
@@ -248,7 +284,8 @@ class CreateParameters extends Component
                                 'trains_id' => $trains[$contTrains]->id,
                                 'in' => $this->pf != '' ? $this->pf['in'][$t] : null,
                                 'out' => $this->pf != '' ? $this->pf['out'][$t] : null,
-                                'filter_change' => isset($this->filters[$t][$p]) ? $this->filters[$t][$p] == 'yes' ? Carbon::now() : null : null
+                                'filter_change' => isset($this->filters[$t][$p]) ? $this->filters[$t][$p] == 'yes' ? Carbon::now() : null : null,
+                                'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                             ]);
                         }
                         // Polish Filters end
@@ -283,7 +320,8 @@ class CreateParameters extends Component
 
                             'observations' => isset($this->observations['ope'][$t]) ? $this->observations['ope'][$t] : null,
                             'user_created_at' => Auth::id(),
-                            //'user_updated_at' => Auth::id()
+                            'user_updated_at' => Auth::id(),
+                            'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                         ]);
 
                         $operation = Operation::latest('id')->first();
@@ -298,7 +336,8 @@ class CreateParameters extends Component
                                     'px' => 0, //$this->px[$t][$b],
                                     'booster_flow' => $this->booster['co'][$t],
                                     'booster_pressures' => $this->booster['pre'][$t][$b],
-                                    'booster_pressures_total' => $this->booster['cp'][$t]
+                                    'booster_pressures_total' => $this->booster['cp'][$t],
+                                    'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                                 ]);
                             }
                         }
@@ -322,7 +361,8 @@ class CreateParameters extends Component
 
                     'observations' => isset($this->observations['prw']) ? $this->observations['prw'] : null,
                     'user_created_at' => Auth::id(),
-                    //'user_updated_at' => Auth::id()
+                    'user_updated_at' => Auth::id(),
+                    'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                 ]);
 
                 $productWater = ProductWater::latest('id')->first();
@@ -333,7 +373,8 @@ class CreateParameters extends Component
                         'product_waters_id' => $productWater->id,
                         'trains_id' => $trains[$pro - 1]->id,
                         'reading' => $this->reading[$pro],
-                        'type' => 'Train'
+                        'type' => 'Train',
+                        'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                     ]);
                 }
 
@@ -343,7 +384,8 @@ class CreateParameters extends Component
                         'product_waters_id' => $productWater->id,
                         'trains_id' => $irrigationId->id,
                         'reading' => $this->irrigation,
-                        'type' => 'Irrigation'
+                        'type' => 'Irrigation',
+                        'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                     ]);
                 }
 
@@ -353,7 +395,8 @@ class CreateParameters extends Component
                         'product_waters_id' => $productWater->id,
                         'trains_id' => $municipalId->id,
                         'reading' => $this->municipal,
-                        'type' => 'Municipal'
+                        'type' => 'Municipal',
+                        'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                     ]);
                 }
                 // Production Readings end
@@ -363,7 +406,8 @@ class CreateParameters extends Component
                     Cistern::create([
                         'product_waters_id' => $productWater->id,
                         'capacity' => $this->tank[$ci],
-                        'status' => 'Enabled'
+                        'status' => 'Enabled',
+                        'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                     ]);
                 }
                 // Cisterns end
@@ -378,21 +422,21 @@ class CreateParameters extends Component
                     'sodium_hydroxide' => $this->sodium_hydroxide,
                     'hydrochloric_acid' => $this->hydrochloric_acid,
                     'kl1' => $this->kl1,
-                    'kl2' => $this->kl2
+                    'kl2' => $this->kl2,
+                    'parameters_date' => $this->addOldParameters == true ? $this->parameters_date : Carbon::now()->toDateString()
                 ]);
                 // Chemicals end
                 // Product Water end
             });
 
-            $this->dispatchBrowserEvent('successAlert');
+            if ($this->addOldParameters) {
+                $this->emit('success-AddOldParameters');
+            } else {
+                $this->emit('success-alert');
+            }
         } catch (Exception $e) {
-            $this->dispatchBrowserEvent('errorAlert', $e);
+            $this->emit('error-alert');
         }
-    }
-
-    public function redirec()
-    {
-        return redirect()->route('companies.services.plants.index', [$this->company, $this->service]);
     }
 
     public function render()

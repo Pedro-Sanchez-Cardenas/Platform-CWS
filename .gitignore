@@ -30,3 +30,5 @@ supervisord.pid
 .idea/platform-cws.iml
 
 .idea/vcs.xml
+
+.idea/

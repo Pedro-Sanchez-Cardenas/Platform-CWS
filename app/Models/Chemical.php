@@ -23,7 +23,8 @@ class Chemical extends Model
         'sodium_hydroxide',
         'hydrochloric_acid',
         'kl1',
-        'kl2'
+        'kl2',
+        'parameters_date'
     ];
 
     public function productWater()

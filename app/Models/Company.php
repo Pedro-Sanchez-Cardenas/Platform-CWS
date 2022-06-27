@@ -22,6 +22,7 @@ class Company extends Model
         'location',
         'zip',
         'suburb',
+        'status',
         'countries_id',
         'services_id',
         'currencies_id'

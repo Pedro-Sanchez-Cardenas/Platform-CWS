@@ -80,7 +80,3 @@
 
     <div class="float-end">{{ $companies->links() }}</div>
 </div>
-
-{{-- Modals --}}
-@include('livewire.company.extras.modals.createCompany')
-{{-- Modals End --}}

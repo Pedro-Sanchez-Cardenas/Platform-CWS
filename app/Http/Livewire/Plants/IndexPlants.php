@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Plants;
 
 use App\Models\Plant;
 use App\Models\Company;
+use App\Models\ProductWater;
+use Carbon\Carbon;
 use Livewire\Component;
 
-class CardPlants extends Component
+class IndexPlants extends Component
 {
     // Parameters
     public $company;
@@ -33,11 +35,14 @@ class CardPlants extends Component
         $this->model = Plant::class;
     }
 
-    public function render()
-    {
-        return view('livewire.plants.card-plants', [
-            'plants' => empty($this->search) ? Plant::where('companies_id', $this->companyData->id)->paginate(10) : $this->query()
-        ]);
+    public function checkForParameters ($plantId) {
+        $parameters = ProductWater::where('plants_id', $plantId)->whereDate('created_at', Carbon::now()->format('y-m-d'))->first();
+
+        if($parameters){
+            $this->emit('alertExistParameters', $plantId);
+        }else{
+            return redirect()->route('companies.services.plants.parameters.create', [$this->company, $this->service, $plantId]);
+        }
     }
 
     private function query()
@@ -58,5 +63,12 @@ class CardPlants extends Component
         }
 
         return $query;
+    }
+
+    public function render()
+    {
+        return view('livewire.plants.index-plants', [
+            'plants' => empty($this->search) ? Plant::where('companies_id', $this->companyData->id)->paginate(10) : $this->query()
+        ]);
     }
 }

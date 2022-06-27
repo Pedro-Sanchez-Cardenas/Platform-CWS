@@ -9,17 +9,24 @@
 <script src="{{ asset(mix('js/core/app-menu.js')) }}"></script>
 <script src="{{ asset(mix('js/core/app.js')) }}"></script>
 
-<!-- custome scripts file for user -->
+<!-- customer scripts file for user -->
 <script src="{{ asset(mix('js/core/scripts.js')) }}"></script>
 
 @if ($configData['blankPage'] === false)
     <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
 @endif
+
+<!-- Alpinejs -->
+<script defer src="{{ asset(mix('vendors/js/alpinejs/alpine.js')) }}"></script>
+<!-- END: Alpinejs -->
+
 <!-- END: Theme JS-->
+
 <!-- BEGIN: Page JS-->
 @yield('page-script')
 <!-- END: Page JS-->
 
-@stack('modals')
 @livewireScripts
-<script defer src="{{ asset(mix('vendors/js/alpinejs/alpine.js')) }}"></script>
+@yield('livewire-js')
+
+@stack('modals')

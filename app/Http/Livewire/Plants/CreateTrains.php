@@ -16,14 +16,14 @@ use App\Models\PolishFilterType;
 use App\Models\Train;
 use App\Models\User;
 
-class Trains extends Component
+class CreateTrains extends Component
 {
     // variables conectadas a Alpinejs
     public $trainIndex = [];
 
     public function render()
     {
-        return view('livewire.operation.plants.trains', [
+        return view('livewire.operation.plants.create-trains', [
 
             'plantTypes' => PlantType::all(),
             'countries' => Country::all(),
@@ -32,8 +32,7 @@ class Trains extends Component
             'managers' => User::role('Manager')->get(),
             'membranesActiveArea' => MembraneActiveArea::all(),
             'polishFilterTypes' => PolishFilterType::all(),
-            'companies' => Company::all(),
-
+            'companies' => Company::all()
         ]);
     }
 }

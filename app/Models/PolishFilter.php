@@ -20,6 +20,7 @@ class PolishFilter extends Model
         'in',
         'out',
         'filter_change',
+        'parameters_date'
     ];
 
     public function pretreatment()
