@@ -2,17 +2,20 @@
     "menu": [
         {
             "navheader": "Dashboards",
-            "slug": ""
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
         },
         {
             "url": "/",
             "name": "Administrative",
             "icon": "sliders",
-            "slug": "Administrative"
+            "slug": "Administrative",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager"
         },
         {
             "navheader": "Super Admin",
-            "slug": ""
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager"
         },
         {
             "name": "Settings",
@@ -20,6 +23,7 @@
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "icon": "tool",
             "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
             "submenu": [
                 {
                     "url": "/companies",
@@ -62,7 +66,8 @@
         },
         {
             "navheader": "Operation",
-            "slug": ""
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Manager|Operator"
         },
         {
             "name": "Companies",
@@ -70,6 +75,7 @@
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "icon": "tool",
             "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Manager|Operator",
             "submenu": [
                 {
                     "name": "CWS MEX",
@@ -128,7 +134,8 @@
         },
         {
             "navheader": "Administration",
-            "slug": ""
+            "slug": "",
+            "roles": "Super-Admin|Director|Administrative-Manager"
         }
     ]
 }

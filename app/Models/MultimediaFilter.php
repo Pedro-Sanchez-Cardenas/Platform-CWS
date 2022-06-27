@@ -18,7 +18,8 @@ class MultimediaFilter extends Model
         'pretreatments_id',
         'trains_id',
         'in',
-        'out'
+        'out',
+        'parameters_date'
     ];
 
     public function pretreatment()

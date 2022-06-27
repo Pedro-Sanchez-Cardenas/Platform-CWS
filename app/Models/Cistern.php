@@ -18,7 +18,8 @@ class Cistern extends Model
     protected $fillable = [
         'product_waters_id',
         'capacity',
-        'status'
+        'status',
+        'parameters_date'
     ];
 
     public function productWater()

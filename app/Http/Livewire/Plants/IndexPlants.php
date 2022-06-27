@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Plants;
 
 use App\Models\Plant;
 use App\Models\Company;
+use App\Models\ProductWater;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class IndexPlants extends Component
@@ -31,6 +33,16 @@ class IndexPlants extends Component
         $this->fields = ['name'];
         //Definimos el modelo
         $this->model = Plant::class;
+    }
+
+    public function checkForParameters ($plantId) {
+        $parameters = ProductWater::where('plants_id', $plantId)->whereDate('created_at', Carbon::now()->format('y-m-d'))->first();
+
+        if($parameters){
+            $this->emit('alertExistParameters', $plantId);
+        }else{
+            return redirect()->route('companies.services.plants.parameters.create', [$this->company, $this->service, $plantId]);
+        }
     }
 
     private function query()

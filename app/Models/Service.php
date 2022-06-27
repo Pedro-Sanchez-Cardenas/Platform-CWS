@@ -15,12 +15,13 @@ class Service extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'status'
     ];
 
     // Relations
     public function companies()
     {
-        return $this->belongsToMany(Company::class);
+        return $this->hasMany(Company::class)->withTimestamps();
     }
 }

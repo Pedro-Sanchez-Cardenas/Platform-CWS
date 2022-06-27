@@ -19,4 +19,10 @@ class PlantType extends Model
         'user_created_at',
         'user_updated_at'
     ];
+
+    // Relations
+    public function plants()
+    {
+        return $this->hasMany(Plant::class, 'plant_types_id', 'id');
+    }
 }

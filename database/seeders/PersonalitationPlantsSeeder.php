@@ -21,6 +21,9 @@ class PersonalitationPlantsSeeder extends Seeder
             'well_pump' => 'no',
             'feed_pump' => 'no',
             'boosterc' => 'yes',
+            'feed_flow' => 'yes',
+            'permeate_flow' => 'yes',
+            'reject_flow' => 'no'
         ]);
 
         PersonalitationPlant::create([
@@ -30,6 +33,9 @@ class PersonalitationPlantsSeeder extends Seeder
             'well_pump' => 'yes',
             'feed_pump' => 'no',
             'boosterc' => 'no',
+            'feed_flow' => 'no',
+            'permeate_flow' => 'yes',
+            'reject_flow' => 'yes'
         ]);
 
         PersonalitationPlant::create([
@@ -39,6 +45,9 @@ class PersonalitationPlantsSeeder extends Seeder
             'well_pump' => 'yes',
             'feed_pump' => 'no',
             'boosterc' => 'no',
+            'feed_flow' => 'yes',
+            'permeate_flow' => 'yes',
+            'reject_flow' => 'no'
         ]);
     }
 }

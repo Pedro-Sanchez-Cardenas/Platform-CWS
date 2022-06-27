@@ -8,7 +8,6 @@ use App\Models\ProductWater;
 use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Livewire\WithPagination;
 
 class ViewParameters extends Component
 {
@@ -27,28 +26,23 @@ class ViewParameters extends Component
 
     // Data requerida por la vista
     public Company $company;
-    public Plant $plant;
-    public $parameters;
+    public $plant;
 
     // AddOpeManaObservation
     public $opeManaId;
     public $opeManaObservation;
 
-    // EditParemers
-    public $edit_parameters_id;
-
     public function mount()
     {
         $this->company = Company::where('name', $this->companyParameter)->first(); // Obtenemos la data del company
-        $this->plant = Plant::where('id', $this->plantParameter)->where('companies_id', $this->company->id)->first();
-        $this->parameters = Plant::where('id', $this->plantParameter)->where('companies_id', $this->company->id)->with(['product_waters', 'pretreatments', 'operations'])->get();
+        $this->plant = Plant::where('id', $this->plantParameter)->where('companies_id', $this->company->id)->with(['product_waters', 'pretreatments', 'operations'])->first();
     }
 
     public function render()
     {
         $dates = explode(" ", $this->date_range);
         return view('livewire.parameters.view-parameters', [
-            'parameters' => empty($this->date_range) ? ($this->parameters) : ((count($dates) > 2) ? $this->query_range() : $this->query_one_date()),
+            'parameters' => empty($this->date_range) ? null : (count($dates) > 2 ? $this->query_range() : $this->query_one_date()),
         ]);
     }
 
@@ -59,8 +53,9 @@ class ViewParameters extends Component
     }
 
     // Guardamos el operation manager observation a la DB;
-    public function AddOpeManaObservation()
+    public function AddOpeManaObservation($id)
     {
+        $this->opeManaId = $id;
         try {
             DB::transaction(function () {
                 ProductWater::where('id', $this->opeManaId)->update([
@@ -71,15 +66,10 @@ class ViewParameters extends Component
             // Success Save
             $this->reset('opeManaObservation');
 
-            return redirect()->back()->with('success', 'Comment saved successfully!!');
+            $this->emit('successAddOperationsManagerComment');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error saving your comment.');
+            $this->emit('error');
         }
-    }
-
-    public function get_id_editParameters($id)
-    {
-        $this->edit_parameters_id = $id;
     }
 
     public function query_one_date()
@@ -103,6 +93,7 @@ class ViewParameters extends Component
                 }
             ]
         )->get();
+
         return $parameters;
     }
 
@@ -117,21 +108,21 @@ class ViewParameters extends Component
                         $replace = array(0 => $dates[0], 1 => 'to', 2 => Carbon::createFromFormat('Y-m-d', $dates[2])->addDay()->toDateString());
                         $dates = array_replace($dates, $replace);
 
-                        $query->whereBetween('created_at', [$dates[0], $dates[2]]);
+                        $query->whereBetween('parameters_date', [$dates[0], $dates[2]]);
                     },
                     'pretreatments' => function ($query) {
                         $dates = explode(" ", $this->date_range);
                         $replace = array(0 => $dates[0], 1 => 'to', 2 => Carbon::createFromFormat('Y-m-d', $dates[2])->addDay()->toDateString());
                         $dates = array_replace($dates, $replace);
 
-                        $query->whereBetween('created_at', [$dates[0], $dates[2]]);
+                        $query->whereBetween('parameters_date', [$dates[0], $dates[2]]);
                     },
                     'operations' => function ($query) {
                         $dates = explode(" ", $this->date_range);
                         $replace = array(0 => $dates[0], 1 => 'to', 2 => Carbon::createFromFormat('Y-m-d', $dates[2])->addDay()->toDateString());
                         $dates = array_replace($dates, $replace);
 
-                        $query->whereBetween('created_at', [$dates[0], $dates[2]]);
+                        $query->whereBetween('parameters_date', [$dates[0], $dates[2]]);
                     }
                 ]
             )->get();
