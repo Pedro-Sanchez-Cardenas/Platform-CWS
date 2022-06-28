@@ -234,15 +234,13 @@
                                                 @endif
                                             </td>
 
-                                            <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
-                                                class="text-nowrap m-0 py-0.5 px-0">
+                                            <td class="text-nowrap m-0 py-0.5 px-0">
                                                 @if (!$loop->first && !$loop->last)
                                                     <span>{{ $product_water->created_at }}</span>
                                                 @endif
                                             </td>
 
-                                            <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
-                                                class="text-nowrap text-center m-0 py-0.5 px-0">
+                                            <td class="text-nowrap text-center m-0 py-0.5 px-0">
                                                 @if (!$loop->first && !$loop->last)
                                                     <span>{{ $product_water->parameters_date }}</span>
                                                 @endif
