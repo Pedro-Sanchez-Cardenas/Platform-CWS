@@ -305,7 +305,7 @@
             <div wire:loading.remove wire:target='date_range' class="card">
                 <div class="card-body m-0 p-0">
                     <div class="border rounded-top overflow-auto height-550">
-                        @if ($plant->first()->product_waters->first() != null)
+                        @if ($plant->product_waters->first() != null)
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="sticky-top zindex-2">
                                     <tr class="text-center" role="row">
@@ -403,7 +403,7 @@
                                 </thead>
 
                                 <tbody class="m-0 p-0">
-                                    @foreach ($plant->first()->product_waters as $product_water)
+                                    @foreach ($plant->product_waters as $product_water)
                                         <tr class="border-primary">
                                             {{-- Init Feed line to hotel supply --}}
                                             <td class="m-0 p-0 text-center">
@@ -611,7 +611,7 @@
         <div wire:loading.remove wire:target='date_range' class="card mx-0 px-0">
             <div class="card-body m-0 p-0">
                 <div class="border rounded-top overflow-auto height-600">
-                    @if ($plant->first()->pretreatments->first() != null)
+                    @if ($plant->pretreatments->first() != null)
                         <table class="table table-sm table-bordered table-hover">
                             <thead class="sticky-top zindex-2">
                                 <tr class="text-center" role="row">
@@ -1016,7 +1016,7 @@
         <div wire:loading.remove wire:target='date_range' class="card mx-0 px-0">
             <div class="card-body m-0 p-0">
                 <div class="border rounded-top overflow-auto height-600">
-                    @if ($plant->first()->operations->first() != null)
+                    @if ($plant->operations->first() != null)
                         <table class="table table-sm table-bordered table-hover">
                             <thead class="sticky-top zindex-2">
                                 <tr class="text-center" role="row">
