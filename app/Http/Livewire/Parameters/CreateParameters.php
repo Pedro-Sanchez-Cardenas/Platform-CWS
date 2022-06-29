@@ -64,8 +64,6 @@ class CreateParameters extends Component
 
     public $parameters_date;
 
-    public $trainsStatus = [];
-
     protected $listeners = ['confirmParameters'];
 
     public function mount(Request $request)
@@ -74,8 +72,6 @@ class CreateParameters extends Component
         $parametros = explode("?", $url);
         if (count($parametros) > 1) {
             $this->addOldParameters = true;
-        } else {
-            $this->addOldParameters = false;
         }
     }
 
