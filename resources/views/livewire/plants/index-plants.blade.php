@@ -1,14 +1,14 @@
 <div>
 
-    <head>
-        <div class="d-flex justify-content-between align-items-center">
+    <div>
+        <div class="d-flex justify-content-between align-items-end">
             <div class="w-25">
                 <label class="form" for="">Search:</label>
                 <div class="input-group input-group-merge">
                     <span class="input-group-text" id="basic-addon-search2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-search">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
@@ -28,7 +28,7 @@
                 <span>Add Plant</span>
             </a>
         </div>
-    </head>
+    </div>
 
     <section class="mt-2">
         <div wire:loading wire:target='search'>
@@ -41,36 +41,32 @@
             @forelse ($plants as $plant)
                 <div wire:loading.remove wire:target='search' class="col-sm-12 col-md-6 col-lg-4">
                     <div class="card">
-                        @hasanyrole('Super-Admin|Operations-Manager|Administrative-Manager')
-                            <div class="d-flex btn-group justify-content-end plant-acctions">
-                                <button class="btn btn-icon btn-flat-info">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                        <path
-                                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                    </svg>
-                                </button>
+                        <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
+                            class="img-thumbnail" alt="plant_cover">
 
-                                <button class="btn btn-icon btn-flat-warning">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        @hasanyrole('Super-Admin|Operations-Manager|Administrative-Manager')
+                            <div class="d-flex btn-group">
+                                <button
+                                    class="btn btn-icon btn-flat-warning d-flex justify-content-center align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                         <path
                                             d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                     </svg>
+                                    <span class="ms-1">Edit</span>
                                 </button>
 
-                                <button class="btn btn-icon btn-flat-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                <button
+                                    class="btn btn-icon btn-flat-danger d-flex justify-content-center align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M6 1.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v1H6v-1Zm5 0v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5ZM4.5 5.029a.5.5 0 1 1 .998-.06l.5 8.5a.5.5 0 0 1-.998.06l-.5-8.5Zm6.53-.528a.5.5 0 0 1 .47.528l-.5 8.5a.5.5 0 1 1-.998-.058l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                                     </svg>
+                                    <span class="ms-1">Delete</span>
                                 </button>
                             </div>
                         @endhasanyrole
-                        <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
-                            class="img-thumbnail" alt="plant_cover">
 
                         <div class="card-body">
                             <h5 class="card-title text-uppercase">{{ $plant->name }}</h5>
@@ -145,8 +141,8 @@
                             <div class="btn-group col-12" role="group">
                                 <button wire:click="checkForParameters({{ $plant->id }})"
                                     class="btn col-6 btn-success d-flex justify-content-center align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                        class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                         <path
                                             d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                         <path
@@ -157,8 +153,8 @@
 
                                 <a href="{{ route('companies.services.plants.parameters.show', [$company, $service, $plant->id, $plant->id]) }}"
                                     class="btn col-6 btn-primary d-flex justify-content-center align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-eye" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path
                                             d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                         <path
@@ -184,7 +180,8 @@
                                         <td>
                                             @if ($plant->Manager)
                                                 <i class="fas fa-user-circle"></i>{{ $plant->Manager->name }} <br>
-                                                <i class="fas fa-phone-square-alt"></i>{{ $plant->Manager->phone_1 }}
+                                                <i
+                                                    class="fas fa-phone-square-alt"></i>{{ $plant->Manager->phone_1 }}
                                             @else
                                                 <span class="text-danger">N/A</span>
                                             @endif
