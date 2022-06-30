@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Users;
 
 use Livewire\Component;
 
-class CreateUser extends Component
+class FormEdit extends Component
 {
     public function render()
     {
-        return view('livewire.users.create-user');
+        return view('livewire.users.form-edit');
     }
 }
