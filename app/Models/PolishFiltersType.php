@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MembraneActiveArea extends Model
+class PolishFiltersType extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,8 @@ class MembraneActiveArea extends Model
      * @var array
      */
     protected $fillable = [
-        'ft2',
+        'type_name',
+        'microns',
         'user_created_at',
         'user_updated_at'
     ];

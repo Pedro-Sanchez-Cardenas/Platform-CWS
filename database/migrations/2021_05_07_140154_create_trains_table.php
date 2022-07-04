@@ -21,7 +21,7 @@ class CreateTrainsTable extends Migration
             $table->integer('boosters_quantity')->default('0');
             $table->double('tds')->nullable();
 
-            $table->foreignId('membrane_active_areas_id')->nullable()->constrained();
+            $table->foreignId('membrane_types_id')->nullable()->constrained();
             $table->integer('membrane_elements')->nullable();
 
             $table->enum('status', ['Enabled', 'Disabled'])->default('Enabled');

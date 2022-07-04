@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CraatePaymentProviderTable extends Migration
+class CreatePaymentProviderTable extends Migration
   {
             /**
              * Run the migrations.
@@ -31,4 +31,3 @@ class CraatePaymentProviderTable extends Migration
                 Schema::dropIfExists('payment_provider');
             }
         }
-        

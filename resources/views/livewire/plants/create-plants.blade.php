@@ -1,7 +1,6 @@
 <div>
     <form wire:submit.prevent="store">
-        <section>
-            <div class="row">
+        <section class="row">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
@@ -44,7 +43,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <section class="card">
@@ -280,7 +278,7 @@
 
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="row mb-2">
                                     <label class="form-label">Cisterns Quantity</label>
                                     <div class="input-group ">
@@ -305,7 +303,32 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="row mb-2">
+                                    <label class="form-label">Multimedia Filters Quantity</label>
+                                    <div class="input-group ">
+                                        <span
+                                            class="input-group-text @error('personalisations.cisterns') border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor"
+                                                class="bi bi-moisture @error('personalisations.cisterns') text-danger @enderror"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z" />
+                                            </svg>
+                                        </span>
+                                        <input type="text"
+                                            class="form-control @error('personalisations.cisterns') is-invalid border-danger @enderror"
+                                            wire:model='personalisations.cisterns' placeholder="0">
+                                    </div>
+                                    @error('personalisations.cisterns')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
                                 <div class="row mb-2">
                                     <label class="form-label">Booster Quantity</label>
                                     <div class="input-group ">
@@ -327,6 +350,59 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{-- Esta seccion debe sacarse por modulo de la planta --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-2">
+                                    <label class="form-label">Polish Filters Types</label>
+                                    <div class="input-group ">
+                                        <span class="input-group-text @error('boosters') border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                            </svg>
+                                        </span>
+                                        <select class="form-select">
+                                            <option value="">SELECT POLISH FILTER TYPE</option>
+                                            @foreach ($polishFiltersTypes as $polishFiltersType)
+                                                <option value="{{ $polishFiltersType->id }}">
+                                                    {{ $polishFiltersType->microns }})
+                                                    {{ $polishFiltersType->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('boosters')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row mb-2">
+                                    <label class="form-label">Polish Filters Quantity</label>
+                                    <div class="input-group ">
+                                        <span class="input-group-text @error('boosters') border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                            </svg>
+                                        </span>
+                                        <input type="number"
+                                            class="form-control @error('boosters') is-invalid border-danger @enderror"
+                                            wire:model='boosters' placeholder="0">
+                                    </div>
+                                    @error('boosters')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Fin de Seccion por cada modulo de la planta --}}
 
                         <div class="row">
                             <div class="col-md-6">
@@ -406,7 +482,9 @@
                     </div>
                 </div>
             </div>
+        </section>
 
+        <div class="row match-height">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -578,156 +656,156 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <div>
-            <div class="card" x-data="costs()" x-cloak>
-                <div class="card-header">
-                    <h4 class="card-title">Costs</h4>
-                </div>
-
-                <div class="card-body">
-                    <div class="mb-1 row">
-                        <label for="colFormLabel"
-                            class="col-sm-3 col-form-label @error('costs.botM3') text-danger @enderror">BOT
-                            (M3)</label>
-                        <div class="col-md mb-2">
-                            <!-- Custom checkbox -->
-                            <div
-                                class="input-group input-group-merge @error('costs.botM3') border border-danger rounded @enderror">
-                                <span class="input-group-text">
-                                    <div class="form-check">
-                                        <input type="radio" @change="changed('bot')" x-model="botServices"
-                                            value="bot" class="form-check-input">
-                                    </div>
-                                </span>
-                                <input type="text" x-mask:dynamic="$money($input)" id="bot" disabled
-                                    wire:model="costs.botM3" wire:ignore.self x-model="val_1"
-                                    class="form-control ps-1" placeholder="0.00" @input="sumM3()">
-                                <span
-                                    class="input-group-text @error('costs.botM3') text-danger @enderror">USD/M3</span>
-                            </div>
-                            @error('costs.botM3')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+            <div class="col-md-6">
+                <div class="card" x-data="costs()" x-cloak>
+                    <div class="card-header">
+                        <h4 class="card-title">Costs</h4>
                     </div>
 
-                    <div class="mb-1 row">
-                        <label for="colFormLabel"
-                            class="col-sm-3 col-form-label @error('costs.botFixed') text-danger @enderror">BOT
-                            (Fixed)</label>
-                        <div class="col-md mb-2">
-                            <!-- Custom checkbox -->
-                            <div
-                                class="input-group input-group-merge @error('costs.botFixed') border border-danger rounded @enderror">
-                                <span class="input-group-text">
-                                    <div class="form-check">
-                                        <input type="radio" @change="changed('bot')" x-model="botServices"
-                                            value="botFixed" class="form-check-input">
-                                    </div>
-                                </span>
-                                <input type="text" x-mask:dynamic="$money($input)" id="botFixed" disabled
-                                    wire:model="costs.botFixed" wire:ignore.self x-model="val_2"
-                                    class="form-control ps-1" @input="sumMonth()" placeholder="0.00">
-                                <span
-                                    class="input-group-text @error('costs.botFixed') text-danger @enderror">USD/Month</span>
+                    <div class="card-body">
+                        <div class="mb-1 row">
+                            <label for="colFormLabel"
+                                class="col-sm-3 col-form-label @error('costs.botM3') text-danger @enderror">BOT
+                                (M3)</label>
+                            <div class="col-md mb-2">
+                                <!-- Custom checkbox -->
+                                <div
+                                    class="input-group input-group-merge @error('costs.botM3') border border-danger rounded @enderror">
+                                    <span class="input-group-text">
+                                        <div class="form-check">
+                                            <input type="radio" @change="changed('bot')" x-model="botServices"
+                                                value="bot" class="form-check-input">
+                                        </div>
+                                    </span>
+                                    <input type="text" x-mask:dynamic="$money($input)" id="bot" disabled
+                                        wire:model="costs.botM3" wire:ignore.self x-model="val_1"
+                                        class="form-control ps-1" placeholder="0.00" @input="sumM3()">
+                                    <span
+                                        class="input-group-text @error('costs.botM3') text-danger @enderror">USD/M3</span>
+                                </div>
+                                @error('costs.botM3')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            @error('costs.botFixed')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
                         </div>
-                    </div>
-                    <div class="mb-1 row">
-                        <label for="colFormLabel"
-                            class="col-sm-3 col-form-label @error('costs.oymM3') text-danger @enderror">O&M
-                            (m3)</label>
-                        <div class="col-md mb-2">
-                            <!-- Custom checkbox -->
-                            <div
-                                class="input-group input-group-merge @error('costs.oymM3') border border-danger rounded @enderror">
-                                <span class="input-group-text">
-                                    <div class="form-check">
-                                        <input type="radio" @change="changed('oym')" x-model="oymServices"
-                                            value="o&m" class="form-check-input">
-                                    </div>
-                                </span>
-                                <input type="text" x-mask:dynamic="$money($input)" id="o&m" disabled
-                                    wire:model="costs.oymM3" wire:ignore.self x-model="val_3"
-                                    class="form-control ps-1" @input="sumM3()" placeholder="0.00">
-                                <span
-                                    class="input-group-text @error('costs.oymM3') text-danger @enderror">USD/M3</span>
-                            </div>
-                            @error('costs.oymM3')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mb-1 row">
-                        <label for="colFormLabel"
-                            class="col-sm-3 col-form-label @error('costs.oymFixed') text-danger @enderror">O&M
-                            (Fixed)</label>
-                        <div class="col-md mb-2">
-                            <!-- Custom checkbox -->
-                            <div
-                                class="input-group input-group-merge @error('costs.oymFixed') border border-danger rounded @enderror">
-                                <span class="input-group-text">
-                                    <div class="form-check">
-                                        <input type="radio" @change="changed('oym')" x-model="oymServices"
-                                            value="o&mFixed" class="form-check-input">
-                                    </div>
-                                </span>
-                                <input type="text" x-mask:dynamic="$money($input)" id="o&mFixed" disabled
-                                    wire:model="costs.oymFixed" wire:ignore.self x-model="val_4"
-                                    class="form-control ps-1" @input="sumMonth()" placeholder="0.00">
-                                <span
-                                    class="input-group-text @error('costs.oymFixed') text-danger @enderror">USD/Month</span>
-                            </div>
-                            @error('costs.oymFixed')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mb-1 row">
-                        <label for="colFormLabel"
-                            class="col-sm-3 col-form-label @error('costs.remineralisation') text-danger @enderror">Remineralisation
-                            (m3)</label>
-                        <div class="col-md">
-                            <!-- Custom checkbox -->
-                            <div
-                                class="input-group input-group-merge @error('costs.remineralisation') border border-danger rounded @enderror">
-                                <span class="input-group-text">
-                                    <div class="form-check">
-                                        <input type="checkbox" @change="changed()" x-model="remineralisation"
-                                            class="form-check-input">
-                                    </div>
-                                </span>
-                                <input type="text" x-mask:dynamic="$money($input)" id="remineralisation" disabled
-                                    wire:model="costs.remineralisation" wire:ignore.self x-model="val_5"
-                                    class="form-control ps-1" @input="sumM3()" placeholder="0.00">
-                                <span
-                                    class="input-group-text @error('costs.remineralisation') text-danger @enderror">USD/M3</span>
-                            </div>
-                            @error('costs.remineralisation')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card-footer">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>Total USD/M3: $<span class="text-danger" wire:model="costs.totalM3"
-                                            x-text="sumM3"></span></th>
-                                    <th>Total USD/Month: $<span class="text-danger" wire:model='costs.totalMonth'
-                                            x-text="sumMonth"></span>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="mb-1 row">
+                            <label for="colFormLabel"
+                                class="col-sm-3 col-form-label @error('costs.botFixed') text-danger @enderror">BOT
+                                (Fixed)</label>
+                            <div class="col-md mb-2">
+                                <!-- Custom checkbox -->
+                                <div
+                                    class="input-group input-group-merge @error('costs.botFixed') border border-danger rounded @enderror">
+                                    <span class="input-group-text">
+                                        <div class="form-check">
+                                            <input type="radio" @change="changed('bot')" x-model="botServices"
+                                                value="botFixed" class="form-check-input">
+                                        </div>
+                                    </span>
+                                    <input type="text" x-mask:dynamic="$money($input)" id="botFixed" disabled
+                                        wire:model="costs.botFixed" wire:ignore.self x-model="val_2"
+                                        class="form-control ps-1" @input="sumMonth()" placeholder="0.00">
+                                    <span
+                                        class="input-group-text @error('costs.botFixed') text-danger @enderror">USD/Month</span>
+                                </div>
+                                @error('costs.botFixed')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-1 row">
+                            <label for="colFormLabel"
+                                class="col-sm-3 col-form-label @error('costs.oymM3') text-danger @enderror">O&M
+                                (m3)</label>
+                            <div class="col-md mb-2">
+                                <!-- Custom checkbox -->
+                                <div
+                                    class="input-group input-group-merge @error('costs.oymM3') border border-danger rounded @enderror">
+                                    <span class="input-group-text">
+                                        <div class="form-check">
+                                            <input type="radio" @change="changed('oym')" x-model="oymServices"
+                                                value="o&m" class="form-check-input">
+                                        </div>
+                                    </span>
+                                    <input type="text" x-mask:dynamic="$money($input)" id="o&m" disabled
+                                        wire:model="costs.oymM3" wire:ignore.self x-model="val_3"
+                                        class="form-control ps-1" @input="sumM3()" placeholder="0.00">
+                                    <span
+                                        class="input-group-text @error('costs.oymM3') text-danger @enderror">USD/M3</span>
+                                </div>
+                                @error('costs.oymM3')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-1 row">
+                            <label for="colFormLabel"
+                                class="col-sm-3 col-form-label @error('costs.oymFixed') text-danger @enderror">O&M
+                                (Fixed)</label>
+                            <div class="col-md mb-2">
+                                <!-- Custom checkbox -->
+                                <div
+                                    class="input-group input-group-merge @error('costs.oymFixed') border border-danger rounded @enderror">
+                                    <span class="input-group-text">
+                                        <div class="form-check">
+                                            <input type="radio" @change="changed('oym')" x-model="oymServices"
+                                                value="o&mFixed" class="form-check-input">
+                                        </div>
+                                    </span>
+                                    <input type="text" x-mask:dynamic="$money($input)" id="o&mFixed" disabled
+                                        wire:model="costs.oymFixed" wire:ignore.self x-model="val_4"
+                                        class="form-control ps-1" @input="sumMonth()" placeholder="0.00">
+                                    <span
+                                        class="input-group-text @error('costs.oymFixed') text-danger @enderror">USD/Month</span>
+                                </div>
+                                @error('costs.oymFixed')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-1 row">
+                            <label for="colFormLabel"
+                                class="col-sm-3 col-form-label @error('costs.remineralisation') text-danger @enderror">Remineralisation
+                                (m3)</label>
+                            <div class="col-md">
+                                <!-- Custom checkbox -->
+                                <div
+                                    class="input-group input-group-merge @error('costs.remineralisation') border border-danger rounded @enderror">
+                                    <span class="input-group-text">
+                                        <div class="form-check">
+                                            <input type="checkbox" @change="changed()" x-model="remineralisation"
+                                                class="form-check-input">
+                                        </div>
+                                    </span>
+                                    <input type="text" x-mask:dynamic="$money($input)" id="remineralisation" disabled
+                                        wire:model="costs.remineralisation" wire:ignore.self x-model="val_5"
+                                        class="form-control ps-1" @input="sumM3()" placeholder="0.00">
+                                    <span
+                                        class="input-group-text @error('costs.remineralisation') text-danger @enderror">USD/M3</span>
+                                </div>
+                                @error('costs.remineralisation')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Total USD/M3: $<span class="text-danger" wire:model="costs.totalM3"
+                                                x-text="sumM3"></span></th>
+                                        <th>Total USD/Month: $<span class="text-danger" wire:model='costs.totalMonth'
+                                                x-text="sumMonth"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ class TrainsSeeder extends Seeder
 
             // status => 'Enable',
             // type => 'Enable',
-            'membrane_active_areas_id' => '1',
+            'membrane_types_id' => '1',
             'membrane_elements' => '90',
             'user_created_at' => '1'
         ]);
@@ -55,7 +55,7 @@ class TrainsSeeder extends Seeder
             'boosters_quantity' => '0',
             'tds' => '36000',
             // status => 'Enable',
-            'membrane_active_areas_id' => '1',
+            'membrane_types_id' => '1',
             'membrane_elements' => '49',
             'user_created_at' => '1'
         ]);
@@ -66,7 +66,7 @@ class TrainsSeeder extends Seeder
             'tds' => '36000',
             'boosters_quantity' => '0',
             // status => 'Enable',
-            'membrane_active_areas_id' => '1',
+            'membrane_types_id' => '1',
             'membrane_elements' => '49',
             'user_created_at' => '1'
         ]);
@@ -91,7 +91,7 @@ class TrainsSeeder extends Seeder
             'tds' => '12000',
             'boosters_quantity' => '0',
             // status => 'Enable',
-            'membrane_active_areas_id' => '1',
+            'membrane_types_id' => '1',
             'membrane_elements' => '42',
             'user_created_at' => '1'
         ]);
@@ -102,7 +102,7 @@ class TrainsSeeder extends Seeder
             'tds' => '12000',
             'boosters_quantity' => '0',
             // status => 'Enable',
-            'membrane_active_areas_id' => '1',
+            'membrane_types_id' => '1',
             'membrane_elements' => '42',
             'user_created_at' => '1'
         ]);

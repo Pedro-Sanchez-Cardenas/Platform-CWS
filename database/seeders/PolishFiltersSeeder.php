@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\PolishFilterType;
+use App\Models\PolishFiltersType;
 use Illuminate\Database\Seeder;
 
 class PolishFiltersSeeder extends Seeder
@@ -16,7 +16,7 @@ class PolishFiltersSeeder extends Seeder
     {
         // Cartridge
         for ($i = 1; $i < 6; $i++) {
-            PolishFilterType::create([
+            PolishFiltersType::create([
                 'name' => 'Cartridge',
                 'microns' => $i,
                 'user_created_at' => '1'
@@ -25,7 +25,7 @@ class PolishFiltersSeeder extends Seeder
 
         // Bags
         for ($j = 1; $j < 6; $j++) {
-            PolishFilterType::create([
+            PolishFiltersType::create([
                 'name' => 'Bags',
                 'microns' => $j,
                 'user_created_at' => '1'

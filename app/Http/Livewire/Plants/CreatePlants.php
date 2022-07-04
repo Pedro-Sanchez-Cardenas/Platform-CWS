@@ -7,13 +7,13 @@ use Livewire\Component;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Currency;
-use App\Models\MembraneActiveArea;
+use App\Models\MembraneType;
 use App\Models\PaymentType;
 use App\Models\PersonalitationPlant;
 use App\Models\Plant;
 use App\Models\PlantContract;
 use App\Models\PlantType;
-use App\Models\PolishFilterType;
+use App\Models\PolishFiltersType;
 use App\Models\Train;
 use App\Models\User;
 use Exception;
@@ -28,7 +28,6 @@ class CreatePlants extends Component
 
     // Arrays;
     public $plant;
-    public $plant_handbook = [];
     public $personalisations;
     public $boosters;
     public $contract;
@@ -114,6 +113,11 @@ class CreatePlants extends Component
         /*try {
             DB::transaction(function () {*/
         PersonalitationPlant::create([
+            'multimedia_filters_quantity' => 2,
+            'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
+            'polish_filters_quantity' => 2,
+            'polish_filter_types_id' => 1,
+
             'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
             'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
             'chloride' => isset($this->personalisations['chloride']) ? 'yes'  : 'no',
@@ -127,24 +131,22 @@ class CreatePlants extends Component
 
         $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
 
-        $this->plant['cover']->store('plant.covers');
+        if(isset($this->plant['cover'])){
+            $this->plant['cover']->store('plant.covers');
+        }
 
-        foreach ($this->plant['handbooks'] as $handbook) {
-            $handbook->store('plant.handbooks');
+        if(isset($this->plant['handbooks'])){
+            foreach ($this->plant['handbooks'] as $handbook) {
+                $handbook->store('plant.handbooks');
+            }
         }
 
         Plant::create([
             'name' => $this->plant['name'],
             'location' => $this->plant['location'],
-            'cover_path' => $this->plant['cover'], // nullable
+            'cover_path' => isset($this->plant['cover']) ? $this->plant['cover'] : null, // nullable
             'installed_capacity' => 0,
             'design_limit' => 0,
-
-            'polish_filter_types_id' => 1,
-            'polish_filters_quantity' => 2,
-
-            'multimedia_filters_quantity' => 2,
-            'cisterns' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
 
             'companies_id' => $this->plant['company'],
             'clients_id' => 1,
@@ -207,8 +209,8 @@ class CreatePlants extends Component
             'currencies' => Currency::all(),
             'attendants' => User::role('Operator')->get(),
             'managers' => User::role('Manager')->get(),
-            'membranesActiveArea' => MembraneActiveArea::all(),
-            'polishFilterTypes' => PolishFilterType::all(),
+            'membranesTypes' => MembraneType::all(),
+            'polishFiltersTypes' => PolishFiltersType::all(),
             'companies' => Company::where('status', 1)->get(),
             'paymentTypes' => PaymentType::all()
         ]);

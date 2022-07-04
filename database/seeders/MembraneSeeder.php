@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\MembraneActiveArea;
+use App\Models\MembraneType;
 use Illuminate\Database\Seeder;
 
 class MembraneSeeder extends Seeder
@@ -14,7 +14,7 @@ class MembraneSeeder extends Seeder
      */
     public function run()
     {
-        MembraneActiveArea::create([
+        MembraneType::create([
             'ft2' => '440',
             'user_created_at' => '1'
         ]);

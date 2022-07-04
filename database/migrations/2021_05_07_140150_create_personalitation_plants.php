@@ -15,6 +15,12 @@ class CreatePersonalitationPlants extends Migration
     {
         Schema::create('personalitation_plants', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('polish_filters_types_id')->nullable()->constrained();
+
+            $table->integer('polish_filters_quantity')->default('0');
+            $table->integer('multimedia_filters_quantity')->default('0');
+            $table->integer('cisterns_quantity')->default('0');
+
             $table->enum('irrigation', ['yes', 'no'])->default('no');
             $table->enum('sdi', ['yes', 'no'])->default('no');
             $table->enum('chloride', ['yes', 'no'])->default('no');

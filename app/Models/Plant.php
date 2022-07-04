@@ -21,13 +21,6 @@ class Plant extends Model
         'cover_path', // nullable
         'installed_capacity',
         'design_limit',
-
-        'polish_filter_types_id',
-        'polish_filters_quantity',
-
-        'multimedia_filters_quantity',
-        'cisterns_quantity',
-
         'companies_id',
         'clients_id',
         'personalitation_plants_id',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembraneActiveAreasTable extends Migration
+class CreateMembraneTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMembraneActiveAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('membrane_active_areas', function (Blueprint $table) {
+        Schema::create('membrane_types', function (Blueprint $table) {
             $table->id();
             $table->integer('ft2');
             $table->foreignId('user_created_at')->nullable()->constrained('users');
@@ -29,6 +29,6 @@ class CreateMembraneActiveAreasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membrane_active_areas');
+        Schema::dropIfExists('membrane_types');
     }
 }
