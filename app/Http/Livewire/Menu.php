@@ -10,7 +10,7 @@ class Menu extends Component
     public function render()
     {
         return view('livewire.menu',[
-            'companies' => Company::all(),
+            'companies' => Company::with('services')->get(),
         ]);
     }
 }

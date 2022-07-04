@@ -31,18 +31,7 @@ class PlantController extends Controller
      */
     public function create()
     {
-        $attendants = User::role(['Operator', 'Manager'])->get();
-        $managers = User::role('Manager')->get();
-
-        $plantTypes = PlantType::all();
-        $countries = Country::all();
-        $currencies = Currency::all();
-        $polishFilterTypes = PolishFilterType::all();
-        //$billings = BillingPeriod::all();
-        $membranesActiveArea = MembraneActiveArea::all();
-        $companies = Company::all();
-
-        return view('content.operations.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'membranesActiveArea', 'companies'));
+        return view('content.plants.create');
     }
 
     /**
