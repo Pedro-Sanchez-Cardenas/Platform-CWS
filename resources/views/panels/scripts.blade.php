@@ -27,6 +27,6 @@
 <!-- END: Page JS-->
 
 @livewireScripts
-@yield('livewire-js')
+@stack('livewire-js')
 
 @stack('modals')

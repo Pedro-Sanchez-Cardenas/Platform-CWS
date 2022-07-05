@@ -33,7 +33,7 @@
     </section>
 
     <section id="body">
-        <livewire:plants.create-plants /> <!-- Paso de parametros por el render del componente -->
+        <livewire:plants.create-plants />
     </section>
 @endsection
 

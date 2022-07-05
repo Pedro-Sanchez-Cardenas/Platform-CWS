@@ -1,48 +1,48 @@
 <div>
     <form wire:submit.prevent="store">
         <section class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Plant image</h4>
-                        </div>
-                        <div class="card-body mb-1">
-                            <div class="input-group ">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        @if (isset($plant['cover']))
-                                            <span>Photo Preview:</span>
-                                            <img class="img-fluid mb-2" src="{{ $plant['cover']->temporaryUrl() }}">
-                                        @endif
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Plant image</h4>
+                    </div>
+                    <div class="card-body mb-1">
+                        <div class="input-group ">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    @if (isset($plant['cover']))
+                                        <span>Photo Preview:</span>
+                                        <img class="img-fluid mb-2" src="{{ $plant['cover']->temporaryUrl() }}">
+                                    @endif
 
-                                        <input type="file" wire:model="plant.cover" class="form-control">
+                                    <input type="file" wire:model="plant.cover" class="form-control">
 
-                                        @error('plant.cover')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    @error('plant.cover')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Plant HandBooks</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <input type="file" multiple class="form-control" accept=".pdf"
-                                            wire:model="plant.handbooks">
-                                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Plant HandBooks</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <input type="file" multiple class="form-control" accept=".pdf"
+                                        wire:model="plant.handbooks">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section class="card">
@@ -173,7 +173,8 @@
                                 <option value="">SELECT CURRENCY</option>
                                 @foreach ($currencies as $currency)
                                     <option value="{{ $currency->id }}">{{ $currency->name }} -
-                                        {{ $currency->abbreviation }}</option>
+                                        {{ $currency->abbreviation }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -229,7 +230,8 @@
                                 <option value="">SELECT OPERATOR</option>
                                 @foreach ($attendants as $attendant)
                                     <option value="{{ $attendant->id }}">{{ $attendant->name }} -
-                                        {{ $attendant->company->name }}</option>
+                                        {{ $attendant->company->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -257,7 +259,8 @@
                                 <option value="">NO MANAGER</option>
                                 @foreach ($managers as $manager)
                                     <option value="{{ $manager->id }}">{{ $manager->name }} -
-                                        {{ $manager->company->name }}</option>
+                                        {{ $manager->company->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -270,221 +273,6 @@
         </section>
 
         <section class="row match-height">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Plant Customization</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="row mb-2">
-                                    <label class="form-label">Cisterns Quantity</label>
-                                    <div class="input-group ">
-                                        <span
-                                            class="input-group-text @error('personalisations.cisterns') border-danger @enderror"
-                                            id="basic-addon-search1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor"
-                                                class="bi bi-moisture @error('personalisations.cisterns') text-danger @enderror"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z" />
-                                            </svg>
-                                        </span>
-                                        <input type="text" x-mask:dynamic="$money($input)"
-                                            class="form-control @error('personalisations.cisterns') is-invalid border-danger @enderror"
-                                            wire:model='personalisations.cisterns' placeholder="0">
-                                    </div>
-                                    @error('personalisations.cisterns')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="row mb-2">
-                                    <label class="form-label">Multimedia Filters Quantity</label>
-                                    <div class="input-group ">
-                                        <span
-                                            class="input-group-text @error('personalisations.cisterns') border-danger @enderror"
-                                            id="basic-addon-search1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor"
-                                                class="bi bi-moisture @error('personalisations.cisterns') text-danger @enderror"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z" />
-                                            </svg>
-                                        </span>
-                                        <input type="text"
-                                            class="form-control @error('personalisations.cisterns') is-invalid border-danger @enderror"
-                                            wire:model='personalisations.cisterns' placeholder="0">
-                                    </div>
-                                    @error('personalisations.cisterns')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="row mb-2">
-                                    <label class="form-label">Booster Quantity</label>
-                                    <div class="input-group ">
-                                        <span class="input-group-text @error('boosters') border-danger @enderror"
-                                            id="basic-addon-search1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
-                                            </svg>
-                                        </span>
-                                        <input type="number"
-                                            class="form-control @error('boosters') is-invalid border-danger @enderror"
-                                            wire:model='boosters' placeholder="0">
-                                    </div>
-                                    @error('boosters')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Esta seccion debe sacarse por modulo de la planta --}}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row mb-2">
-                                    <label class="form-label">Polish Filters Types</label>
-                                    <div class="input-group ">
-                                        <span class="input-group-text @error('boosters') border-danger @enderror"
-                                            id="basic-addon-search1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
-                                            </svg>
-                                        </span>
-                                        <select class="form-select">
-                                            <option value="">SELECT POLISH FILTER TYPE</option>
-                                            @foreach ($polishFiltersTypes as $polishFiltersType)
-                                                <option value="{{ $polishFiltersType->id }}">
-                                                    {{ $polishFiltersType->microns }})
-                                                    {{ $polishFiltersType->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    @error('boosters')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="row mb-2">
-                                    <label class="form-label">Polish Filters Quantity</label>
-                                    <div class="input-group ">
-                                        <span class="input-group-text @error('boosters') border-danger @enderror"
-                                            id="basic-addon-search1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
-                                            </svg>
-                                        </span>
-                                        <input type="number"
-                                            class="form-control @error('boosters') is-invalid border-danger @enderror"
-                                            wire:model='boosters' placeholder="0">
-                                    </div>
-                                    @error('boosters')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Fin de Seccion por cada modulo de la planta --}}
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="irrigation"
-                                        wire:model="personalisations.irrigation">
-                                    <label class="form-check-label" for="irrigation">Irrigation</label>
-                                </div>
-
-                                <br>
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="wellPump"
-                                        wire:model.lazy="personalisations.wellPump">
-                                    <label class="form-check-label" for="wellPump">Well Pump</label>
-                                </div>
-
-                                <br>
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="feedPump"
-                                        wire:model.lazy="personalisations.feedPump">
-                                    <label class="form-check-label" for="feedPump">Feed Pump</label>
-                                </div>
-
-                                <br>
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
-                                        wire:model.lazy="personalisations.chloride">
-                                    <label class="form-check-label" for="customSwitch1">Chloride</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                @if ($boosters > 0)
-                                    <div class="form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" id="booster_flow"
-                                            wire:model.lazy="personalisations.booster_flow">
-                                        <label class="form-check-label" for="booster_flow">Booster Flow</label>
-                                    </div>
-
-                                    <br>
-                                @endif
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="sdi"
-                                        wire:model.lazy="personalisations.sdi">
-                                    <label class="form-check-label" for="sdi">SDI</label>
-                                </div>
-
-                                <br>
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="feed_flow"
-                                        wire:model.lazy="personalisations.feed_flow">
-                                    <label class="form-check-label" for="feed_flow">Feed Flow</label>
-                                </div>
-
-                                <br>
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="permeate_flow"
-                                        wire:model.lazy="personalisations.permeate_flow">
-                                    <label class="form-check-label" for="permeate_flow">Permeate Flow</label>
-                                </div>
-
-                                <br>
-
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="reject_flow"
-                                        wire:model.lazy="personalisations.reject_flow">
-                                    <label class="form-check-label" for="reject_flow">Reject Flow</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="row match-height">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -642,7 +430,7 @@
                                             d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
                                     </svg>
                                 </span>
-                                <input type="number"
+                                <input type="text"
                                     class="form-control px-1 @error('contract.minimumConsumption') is-invalid border-danger @enderror"
                                     placeholder="0.00" wire:model="contract.minimumConsumption">
                                 <span
@@ -651,7 +439,7 @@
                             @error('contract.minimumConsumption')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                            <label>*This field can be left empty</label>
+                            <label class="text-primary">*This field can be left empty</label>
                         </div>
                     </div>
                 </div>
@@ -779,8 +567,8 @@
                                                 class="form-check-input">
                                         </div>
                                     </span>
-                                    <input type="text" x-mask:dynamic="$money($input)" id="remineralisation" disabled
-                                        wire:model="costs.remineralisation" wire:ignore.self x-model="val_5"
+                                    <input type="text" x-mask:dynamic="$money($input)" id="remineralisation"
+                                        disabled wire:model="costs.remineralisation" wire:ignore.self x-model="val_5"
                                         class="form-control ps-1" @input="sumM3()" placeholder="0.00">
                                     <span
                                         class="input-group-text @error('costs.remineralisation') text-danger @enderror">USD/M3</span>
@@ -809,7 +597,385 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="row match-height">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Plant Customization</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row mb-2">
+                                    <label class="form-label">Cisterns Quantity</label>
+                                    <div class="input-group ">
+                                        <span
+                                            class="input-group-text @error('personalisations.cisterns') border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor"
+                                                class="bi bi-moisture @error('personalisations.cisterns') text-danger @enderror"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z" />
+                                            </svg>
+                                        </span>
+                                        <input type="text" x-mask:dynamic="$money($input)"
+                                            class="form-control @error('personalisations.cisterns') is-invalid border-danger @enderror"
+                                            wire:model='personalisations.cisterns' placeholder="0">
+                                    </div>
+                                    @error('personalisations.cisterns')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="irrigation"
+                                        wire:model="personalisations.irrigation">
+                                    <label class="form-check-label" for="irrigation">Irrigation</label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="wellPump"
+                                        wire:model.lazy="personalisations.wellPump">
+                                    <label class="form-check-label" for="wellPump">Well Pump</label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="feedPump"
+                                        wire:model.lazy="personalisations.feedPump">
+                                    <label class="form-check-label" for="feedPump">Feed Pump</label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
+                                        wire:model.lazy="personalisations.chloride">
+                                    <label class="form-check-label" for="customSwitch1">Chloride</label>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                @if ($boosters > 0)
+                                    <div class="form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" id="booster_flow"
+                                            wire:model.lazy="personalisations.booster_flow">
+                                        <label class="form-check-label" for="booster_flow">Booster Flow</label>
+                                    </div>
+
+                                    <br>
+                                @endif
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="sdi"
+                                        wire:model.lazy="personalisations.sdi">
+                                    <label class="form-check-label" for="sdi">SDI</label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="feed_flow"
+                                        wire:model.lazy="personalisations.feed_flow">
+                                    <label class="form-check-label" for="feed_flow">Feed Flow</label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="permeate_flow"
+                                        wire:model.lazy="personalisations.permeate_flow">
+                                    <label class="form-check-label" for="permeate_flow">Permeate Flow</label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="reject_flow"
+                                        wire:model.lazy="personalisations.reject_flow">
+                                    <label class="form-check-label" for="reject_flow">Reject Flow</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card" x-data="trains()" x-cloak>
+                    <div class="d-flex justify-content-between align-items-end mt-2 mx-1">
+                        <h4>Trains</h4>
+
+                        <div class="bg-primary text-white p-1 rounded">
+                            <span>Trains Numbers:</span>
+                            <span x-text="trains.length"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body mt-1 overflow-auto height-400">
+                        <template x-for="(train, index) in trains">
+                            <div class="border rounded p-1 mb-2">
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <strong class="text-primary">Train: <span x-text="index+1"></span></strong>
+                                    <button type="button" @click="remove()" class="btn btn-sm btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd"
+                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Train Capacity</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.capacity') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.capacity') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" x-mask:dynamic="$money($input)"
+                                                    class="form-control @error('train.capacity') is-invalid border-danger @enderror"
+                                                    wire:model="train.capacity" x-model="train.capacity"
+                                                    placeholder="0">
+                                            </div>
+                                            @error('train.capacity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">TDS</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.tds') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.tds') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" x-mask:dynamic="$money($input)"
+                                                    class="form-control @error('train.tds') is-invalid border-danger @enderror"
+                                                    x-model="train.tds" placeholder="0">
+                                            </div>
+                                            @error('train.tds')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Mult. Filters Quantity</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.multimediaFiltersQuantity') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-moisture @error('train.multimediaFiltersQuantity') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number" step="1" min="0"
+                                                    class="form-control @error('train.multimediaFiltersQuantity') is-invalid border-danger @enderror"
+                                                    wire:model='train.multimediaFiltersQuantity' placeholder="0">
+                                            </div>
+                                            @error('train.multimediaFiltersQuantity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Booster Quantity</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.boosters') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.boosters') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number"
+                                                    class="form-control @error('train.boosters') is-invalid border-danger @enderror"
+                                                    wire:model='train.boosters' placeholder="0">
+                                            </div>
+                                            @error('train.boosters')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Polish Filters Types</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.polishFilterTypes') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.polishFilterTypes') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <select
+                                                    class="form-select @error('train.polishFilterTypes') is-invalid border-danger @enderror"
+                                                    wire:model="train.polishFilterTypes">
+                                                    <option value="">SELECT POLISH FILTER TYPE</option>
+                                                    @foreach ($polishFiltersTypes as $polishFiltersType)
+                                                        <option value="{{ $polishFiltersType->id }}">
+                                                            {{ $polishFiltersType->microns }}#
+                                                            {{ $polishFiltersType->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('train.polishFilterTypes')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Polish Filters Quantity</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.polishFilterQuantity') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.polishFilterQuantity') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number"
+                                                    class="form-control @error('train.polishFilterQuantity') is-invalid border-danger @enderror"
+                                                    wire:model='train.polishFilterQuantity' placeholder="0">
+                                            </div>
+                                            @error('train.polishFilterQuantity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Membrane Active Areas</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.membraneActiveArea') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.membraneActiveArea') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <select
+                                                    class="form-select @error('train.membraneActiveArea') is-invalid border-danger @enderror"
+                                                    wire:model="train.membraneActiveArea">
+                                                    <option value="">SELECT MEMBRANE ACTIVE AREA</option>
+                                                    @foreach ($membranesTypes as $membraneType)
+                                                        <option value="{{ $membraneType->id }}">
+                                                            {{ $membraneType->ft2 }} ft2
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('train.membraneActiveArea')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="row mb-2">
+                                            <label class="form-label">Membrane Quantity</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text @error('train.membraneQuantity') border-danger @enderror"
+                                                    id="basic-addon-search1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor"
+                                                        class="bi bi-water @error('train.membraneQuantity') text-danger @enderror"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number"
+                                                    class="form-control @error('train.membraneQuantity') is-invalid border-danger @enderror"
+                                                    wire:model='train.membraneQuantity' placeholder="0">
+                                            </div>
+                                            @error('train.membraneQuantity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <button type="button" @click="add()" class="btn btn-sm btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                            </svg>
+                            <span>Add Train</span>
+                        </button>
+                    </div>
+                </div>
+        </section>
 
         <button type="submit" class="btn btn-success col-12 waves-effect waves-float waves-light">
             <div class="d-flex justify-content-center align-items-center font-weight-bold">
@@ -909,17 +1075,29 @@
             function trains() {
                 return {
                     trains: [{
-                        id: this.trains.length,
-                        value: null,
-                        validation: null
+                        id: this.trains.length + 1,
+                        capacity: null,
+                        tds: null,
+                        multFiltersQuantity: null,
+                        boosterQuantity: null,
+                        polishFiltersTypes: null,
+                        polishFiltersQuantity: null,
+                        membraneActiveArea: null,
+                        membraneQuantity: null
                     }],
                     add() {
                         if (this.trains.length < 5) {
                             //Agregar nuevo form input
                             this.trains.push({
-                                id: this.trains.length,
-                                value: null,
-                                validation: null
+                                id: this.trains.length + 1,
+                                capacity: null,
+                                tds: null,
+                                multFiltersQuantity: null,
+                                boosterQuantity: null,
+                                polishFiltersTypes: null,
+                                polishFiltersQuantity: null,
+                                membraneActiveArea: null,
+                                membraneQuantity: null
                             });
                         } else {
                             alert("Cannot add more than 5 trains");

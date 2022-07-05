@@ -32,6 +32,7 @@ class CreatePlants extends Component
     public $boosters;
     public $contract;
     public $costs;
+    public $train;
 
     protected function rules()
     {
@@ -91,15 +92,15 @@ class CreatePlants extends Component
             'costs.remineralisation' => ['sometimes', 'string', 'min:0'],
 
             // Trains
-            // 'trains' => ['nullable', 'min:1|max:5|array:capacity,tds,booster,multimediaFilsters,polishFilters,polishQuantity,mArea,mElements'], // We validate the array
-            // 'trains.capacity.*' => ['required', 'integer', 'min:0'],
-            // 'trains.tds.*' => ['required', 'integer', 'min:0'],
-            // 'trains.booster.*' => ['required', 'integer'],
-            // 'trains.multimediaFilsters.*' => ['required', 'integer'],
-            // 'trains.polishFilters.*' => ['required', 'integer'],
-            // 'trains.polishQuantity.*' => ['required', 'integer'],
-            // 'trains.mArea.*' => ['required', 'integer'],
-            // 'trains.mElements.*' => ['required', 'integer'],
+            'train' => ['min:1|max:5|array:capacity,tds,boosters,multimediaFiltersQuantity,polishFilterTypes,polishFilterQuantity,membraneActiveArea,membraneQuantity'], // We validate the array
+            'train.capacity.*' => ['required', 'integer', 'min:0'],
+            'train.tds.*' => ['required', 'integer', 'min:0'],
+            'train.boosters.*' => ['required', 'integer'],
+            'train.multimediaFiltersQuantity.*' => ['required', 'integer'],
+            'train.polishFilterTypes.*' => ['required', 'integer'],
+            'train.polishFilterQuantity.*' => ['required', 'integer'],
+            'train.membraneActiveArea.*' => ['required', 'integer'],
+            'train.membraneQuantity.*' => ['required', 'integer'],
         ];
     }
 
@@ -110,6 +111,7 @@ class CreatePlants extends Component
 
     public function store()
     {
+        dd($this->costs, $this->train);
         /*try {
             DB::transaction(function () {*/
         PersonalitationPlant::create([
