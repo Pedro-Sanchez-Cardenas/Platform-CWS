@@ -37,7 +37,12 @@ class Train extends Model
 
     public function polish_filters_type()
     {
-        return $this->hasOne(PolishFilterType::class, 'id', 'polish_filters_types_id');
+        return $this->hasOne(PolishFiltersType::class, 'id', 'polish_filters_types_id');
+    }
+
+    public function membrane_type()
+    {
+        return $this->hasOne(MembraneType::class, 'id', 'membrane_types_id');
     }
 
     public function pretreatments()

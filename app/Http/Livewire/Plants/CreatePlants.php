@@ -111,95 +111,95 @@ class CreatePlants extends Component
 
     public function store()
     {
-        /*try {
-            DB::transaction(function () {*/
-        PersonalitationPlant::create([
-            'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
+        try {
+            DB::transaction(function () {
+                PersonalitationPlant::create([
+                    'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
 
-            'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
-            'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
-            'chloride' => isset($this->personalisations['chloride']) ? 'yes'  : 'no',
-            'well_pump' => isset($this->personalisations['wellPump']) ? 'yes'  : 'no',
-            'feed_pump' => isset($this->personalisations['feedPump']) ? 'yes'  : 'no',
-            'boosterc' => isset($this->personalisations['booster_flow']) ? 'yes'  : 'no',
-            'feed_flow' => isset($this->personalisations['feed_flow']) ? 'yes'  : 'no',
-            'permeate_flow' => isset($this->personalisations['permeate_flow']) ? 'yes'  : 'no',
-            'reject_flow' => isset($this->personalisations['reject_flow']) ? 'yes'  : 'no'
-        ]);
+                    'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
+                    'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
+                    'chloride' => isset($this->personalisations['chloride']) ? 'yes'  : 'no',
+                    'well_pump' => isset($this->personalisations['wellPump']) ? 'yes'  : 'no',
+                    'feed_pump' => isset($this->personalisations['feedPump']) ? 'yes'  : 'no',
+                    'boosterc' => isset($this->personalisations['booster_flow']) ? 'yes'  : 'no',
+                    'feed_flow' => isset($this->personalisations['feed_flow']) ? 'yes'  : 'no',
+                    'permeate_flow' => isset($this->personalisations['permeate_flow']) ? 'yes'  : 'no',
+                    'reject_flow' => isset($this->personalisations['reject_flow']) ? 'yes'  : 'no'
+                ]);
 
-        $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
+                $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
 
-        if(isset($this->plant['cover'])){
-            $this->plant['cover']->store('plant.covers');
-        }
+                if (isset($this->plant['cover'])) {
+                    $this->plant['cover']->store('plant.covers');
+                }
 
-        if(isset($this->plant['handbooks'])){
-            foreach ($this->plant['handbooks'] as $handbook) {
-                $handbook->store('plant.handbooks');
-            }
-        }
+                if (isset($this->plant['handbooks'])) {
+                    foreach ($this->plant['handbooks'] as $handbook) {
+                        $handbook->store('plant.handbooks');
+                    }
+                }
 
-        Plant::create([
-            'name' => $this->plant['name'],
-            'location' => $this->plant['location'],
-            'cover_path' => isset($this->plant['cover']) ? $this->plant['cover'] : null, // nullable
-            'installed_capacity' => 0,
-            'design_limit' => 0,
+                Plant::create([
+                    'name' => $this->plant['name'],
+                    'location' => $this->plant['location'],
+                    'cover_path' => isset($this->plant['cover']) ? $this->plant['cover'] : null, // nullable
+                    'installed_capacity' => 0,
+                    'design_limit' => 0,
 
-            'companies_id' => $this->plant['company'],
-            'clients_id' => 1,
-            'personalitation_plants_id' => $idPersonalitationPlant->id,
-            'countries_id' => $this->plant['country'],
-            'plant_types_id' => $this->plant['type'],
-            'operator' => $this->plant['operator'], //nullable
-            'manager' => isset($this->plant['manager']) ? $this->plant['manager'] : null, // nullable
-            'user_created_at', Auth::id()
-        ]);
+                    'companies_id' => $this->plant['company'],
+                    'clients_id' => 1,
+                    'personalitation_plants_id' => $idPersonalitationPlant->id,
+                    'countries_id' => $this->plant['country'],
+                    'plant_types_id' => $this->plant['type'],
+                    'operator' => $this->plant['operator'], //nullable
+                    'manager' => isset($this->plant['manager']) ? $this->plant['manager'] : null, // nullable
+                    'user_created_at', Auth::id()
+                ]);
 
-        $plantId = Plant::latest('id')->first();
+                $plantId = Plant::latest('id')->first();
 
-        PlantContract::create([
-            'plants_id' => $plantId->id,
-            'bot_m3' => $this->costs['botM3'],
-            'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
-            'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
-            'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
-            'remineralitation' => isset($this->costs['remineralisationM3']) ? $this->costs['remineralisationM3'] : null,
-            'total_m3' => 0,
-            'total_month' => 0,
+                PlantContract::create([
+                    'plants_id' => $plantId->id,
+                    'bot_m3' => $this->costs['botM3'],
+                    'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
+                    'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
+                    'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
+                    'remineralitation' => isset($this->costs['remineralisationM3']) ? $this->costs['remineralisationM3'] : null,
+                    'total_m3' => 0,
+                    'total_month' => 0,
 
-            'years' => $this->contract['yearsOfContract'],
-            'from' => $this->contract['from'],
-            'till' => Carbon::create($this->contract['from'])->addYears($this->contract['yearsOfContract']), //nullable
-            'minimun_consumption' => isset($this->contract['minimumConsumption']) ? $this->contract['minimumConsumption'] : null,
-            'billing_day' => $this->contract['billingDay'], // nullable
-            'payment_types_id' => $this->contract['paymentType'], // nullable
-            'user_created_at' => Auth::id(),
-        ]);
+                    'years' => $this->contract['yearsOfContract'],
+                    'from' => $this->contract['from'],
+                    'till' => Carbon::create($this->contract['from'])->addYears($this->contract['yearsOfContract']), //nullable
+                    'minimun_consumption' => isset($this->contract['minimumConsumption']) ? $this->contract['minimumConsumption'] : null,
+                    'billing_day' => $this->contract['billingDay'], // nullable
+                    'payment_types_id' => $this->contract['paymentType'], // nullable
+                    'user_created_at' => Auth::id(),
+                ]);
 
 
-        $idPlant = Plant::latest('id')->first();
+                $idPlant = Plant::latest('id')->first();
 
-        // for ($t = 0; $t < count($this->trainIndex); $t++) {
-            Train::create([
-                'plants_id' => $idPlant->id,
-                'capacity' => $this->trains['capacity'],
-                'boosters_quantity' => $this->trains['boosters'],
-                'multimedia_filters_quantity' => $this->trains['multimediaFiltersQuantity'],
-                'tds' => $this->trains['tds'],
-                'status' => 'Enabled',
-                'type' => 'Train',
-                'polish_filters_types_id' => $this->trains['polishFilterTypes'],
-                'polish_filters_quantity' => $this->trains['polishFilterQuantity'],
-                'membrane_types_id' => $this->trains['membraneActiveArea'],
-                'membrane_elements' => $this->trains['membraneQuantity'],
-                'user_created_at' => Auth::id(),
-            ]);
-        // }
-        /*});
+                // for ($t = 0; $t < count($this->trainIndex); $t++) {
+                Train::create([
+                    'plants_id' => $idPlant->id,
+                    'capacity' => $this->trains['capacity'],
+                    'boosters_quantity' => $this->trains['boosters'],
+                    'multimedia_filters_quantity' => $this->trains['multimediaFiltersQuantity'],
+                    'tds' => $this->trains['tds'],
+                    'status' => 'Enabled',
+                    'type' => 'Train',
+                    'polish_filters_types_id' => $this->trains['polishFilterTypes'],
+                    'polish_filters_quantity' => $this->trains['polishFilterQuantity'],
+                    'membrane_types_id' => $this->trains['membraneActiveArea'],
+                    'membrane_elements' => $this->trains['membraneQuantity'],
+                    'user_created_at' => Auth::id(),
+                ]);
+                // }
+            });
         } catch (Exception $e) {
             dd('ERROR TRY CATCH');
-        }*/
+        }
     }
 
     public function render()
