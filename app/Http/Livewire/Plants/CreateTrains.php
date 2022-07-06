@@ -1,20 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Operation\Plants;
+namespace App\Http\Livewire\Plants;
 
 use Livewire\Component;
 
-use App\Models\BillingPeriod;
-use App\Models\Company;
-use App\Models\Country;
-use App\Models\Currency;
-use App\Models\MembraneActiveArea;
-use App\Models\Plant;
-use App\Models\PlantContract;
-use App\Models\PlantType;
-use App\Models\PolishFilterType;
-use App\Models\Train;
-use App\Models\User;
+use App\Models\MembraneType;
+use App\Models\PolishFiltersType;
 
 class CreateTrains extends Component
 {
@@ -23,16 +14,9 @@ class CreateTrains extends Component
 
     public function render()
     {
-        return view('livewire.operation.plants.create-trains', [
-
-            'plantTypes' => PlantType::all(),
-            'countries' => Country::all(),
-            'currencies' => Currency::all(),
-            'attendants' => User::role('Operator')->get(),
-            'managers' => User::role('Manager')->get(),
-            'membranesActiveArea' => MembraneActiveArea::all(),
-            'polishFilterTypes' => PolishFilterType::all(),
-            'companies' => Company::all()
+        return view('livewire.plants.create-trains', [
+            'membranesTypes' => MembraneType::all(),
+            'polishFiltersTypes' => PolishFiltersType::all()
         ]);
     }
 }

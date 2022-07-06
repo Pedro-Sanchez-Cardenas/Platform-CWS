@@ -32,7 +32,7 @@ class CreatePlants extends Component
     public $boosters;
     public $contract;
     public $costs;
-    public $trains;
+    public $trains = [];
 
     protected function rules()
     {
@@ -111,6 +111,7 @@ class CreatePlants extends Component
 
     public function store()
     {
+        dd($this->trains);
         try {
             DB::transaction(function () {
                 PersonalitationPlant::create([
