@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Plants;
 
-use App\Models\Cistern;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Country;
@@ -16,6 +15,7 @@ use App\Models\PlantType;
 use App\Models\PolishFiltersType;
 use App\Models\Train;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
@@ -32,7 +32,7 @@ class CreatePlants extends Component
     public $boosters;
     public $contract;
     public $costs;
-    public $train;
+    public $trains;
 
     protected function rules()
     {
@@ -92,15 +92,15 @@ class CreatePlants extends Component
             'costs.remineralisation' => ['sometimes', 'string', 'min:0'],
 
             // Trains
-            'train' => ['min:1|max:5|array:capacity,tds,boosters,multimediaFiltersQuantity,polishFilterTypes,polishFilterQuantity,membraneActiveArea,membraneQuantity'], // We validate the array
-            'train.capacity.*' => ['required', 'integer', 'min:0'],
-            'train.tds.*' => ['required', 'integer', 'min:0'],
-            'train.boosters.*' => ['required', 'integer'],
-            'train.multimediaFiltersQuantity.*' => ['required', 'integer'],
-            'train.polishFilterTypes.*' => ['required', 'integer'],
-            'train.polishFilterQuantity.*' => ['required', 'integer'],
-            'train.membraneActiveArea.*' => ['required', 'integer'],
-            'train.membraneQuantity.*' => ['required', 'integer'],
+            'trains' => ['min:1|max:5|array:capacity,tds,boosters,multimediaFiltersQuantity,polishFilterTypes,polishFilterQuantity,membraneActiveArea,membraneQuantity'], // We validate the array
+            'trains.capacity.*' => ['required', 'integer', 'min:0'],
+            'trains.tds.*' => ['required', 'integer', 'min:0'],
+            'trains.boosters.*' => ['required', 'integer'],
+            'trains.multimediaFiltersQuantity.*' => ['required', 'integer'],
+            'trains.polishFilterTypes.*' => ['required', 'integer'],
+            'trains.polishFilterQuantity.*' => ['required', 'integer'],
+            'trains.membraneActiveArea.*' => ['required', 'integer'],
+            'trains.membraneQuantity.*' => ['required', 'integer'],
         ];
     }
 
@@ -111,14 +111,10 @@ class CreatePlants extends Component
 
     public function store()
     {
-        dd($this->costs, $this->train);
         /*try {
             DB::transaction(function () {*/
         PersonalitationPlant::create([
-            'multimedia_filters_quantity' => 2,
             'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
-            'polish_filters_quantity' => 2,
-            'polish_filter_types_id' => 1,
 
             'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
             'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
@@ -156,47 +152,50 @@ class CreatePlants extends Component
             'countries_id' => $this->plant['country'],
             'plant_types_id' => $this->plant['type'],
             'operator' => $this->plant['operator'], //nullable
-            'manager' => $this->plant['manager'], // nullable
-            'user_created_at',
+            'manager' => isset($this->plant['manager']) ? $this->plant['manager'] : null, // nullable
+            'user_created_at', Auth::id()
         ]);
 
         $plantId = Plant::latest('id')->first();
 
         PlantContract::create([
-            'plant_id' => $plantId->id,
+            'plants_id' => $plantId->id,
             'bot_m3' => $this->costs['botM3'],
-            'bot_fixed' => $this->costs['botFixed'],
-            'oym_m3' => $this->costs['oymM3'],
-            'oym_fixed' => $this->costs['oymFixed'],
-            'remineralitation' => $this->costs['remineralisationM3'],
-            'total_m3 ' => 0,
+            'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
+            'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
+            'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
+            'remineralitation' => isset($this->costs['remineralisationM3']) ? $this->costs['remineralisationM3'] : null,
+            'total_m3' => 0,
             'total_month' => 0,
 
             'years' => $this->contract['yearsOfContract'],
             'from' => $this->contract['from'],
-            'till' => $this->contract['till'], //nullable
-            'minimun_consumption' => $this->contract['minimumConsumption'],
+            'till' => Carbon::create($this->contract['from'])->addYears($this->contract['yearsOfContract']), //nullable
+            'minimun_consumption' => isset($this->contract['minimumConsumption']) ? $this->contract['minimumConsumption'] : null,
             'billing_day' => $this->contract['billingDay'], // nullable
-            'payment_types_id' => $this->plants['contract.paymenttypes'], // nullable
+            'payment_types_id' => $this->contract['paymentType'], // nullable
             'user_created_at' => Auth::id(),
         ]);
 
 
         $idPlant = Plant::latest('id')->first();
 
-        for ($t = 0; $t < count($this->trainIndex); $t++) {
+        // for ($t = 0; $t < count($this->trainIndex); $t++) {
             Train::create([
                 'plants_id' => $idPlant->id,
-                'capacity' => $this->trains['capacity'][$t],
-                'boosters_quantity' => $this->trains['booster'][$t],
-                'tds' => $this->trains['tds'][$t],
-                'status' => 'Enable',
+                'capacity' => $this->trains['capacity'],
+                'boosters_quantity' => $this->trains['boosters'],
+                'multimedia_filters_quantity' => $this->trains['multimediaFiltersQuantity'],
+                'tds' => $this->trains['tds'],
+                'status' => 'Enabled',
                 'type' => 'Train',
-                'membrane_active_areas_id' => $this->trains['mArea'][$t],
-                'membrane_elements' => $this->trains['mElements'][$t],
+                'polish_filters_types_id' => $this->trains['polishFilterTypes'],
+                'polish_filters_quantity' => $this->trains['polishFilterQuantity'],
+                'membrane_types_id' => $this->trains['membraneActiveArea'],
+                'membrane_elements' => $this->trains['membraneQuantity'],
                 'user_created_at' => Auth::id(),
             ]);
-        }
+        // }
         /*});
         } catch (Exception $e) {
             dd('ERROR TRY CATCH');

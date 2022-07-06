@@ -43,17 +43,20 @@
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/extensions/moment.min.js')) }}"></script>
 
     {{-- alpineJs Mask --}}
     <script src="{{ asset(mix('vendors/js/alpinejs/mask/mask.js')) }}"></script>
+    {{-- Form Repeater --}}
+    <script src="{{ asset(mix('vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
     <!-- Page js files -->
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/components/components-alerts.js')) }}"></script>
+    {{-- Form Repeater --}}
     @stack('jsLivewire')
+    <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
 @endsection

@@ -15,10 +15,6 @@ class PersonalitationPlant extends Model
      * @var array
      */
     protected $fillable = [
-        'multimedia_filters_quantity',
-        'polish_filters_quantity',
-        'polish_filter_types_id',
-
         'cisterns_quantity',
 
         'irrigation',
