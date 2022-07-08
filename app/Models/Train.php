@@ -17,15 +17,20 @@ class Train extends Model
     protected $fillable = [
         'plants_id',
         'capacity',
+
         'boosters_quantity',
         'multimedia_filters_quantity',
+        
         'tds',
         'status',
         'type',
+
         'polish_filters_types_id',
         'polish_filters_quantity',
+
         'membrane_types_id',
         'membrane_elements',
+
         'user_created_at',
         'user_updated_at'
     ];

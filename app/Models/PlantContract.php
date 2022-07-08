@@ -16,19 +16,20 @@ class PlantContract extends Model
      */
     protected $fillable = [
         'plants_id',
+        'clients_id',
         'bot_m3',
         'bot_fixed',
         'oym_m3',
         'oym_fixed',
         'remineralitation',
-        'total_m3',
-        'total_month',
+
         'years',
         'from',
         'till',
         'minimun_consumption',
         'billing_day',
         'payment_types_id',
+        'observations',
         'user_created_at',
         'user_updated_at'
     ];

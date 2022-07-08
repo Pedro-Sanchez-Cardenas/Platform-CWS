@@ -18,13 +18,13 @@ class TrainsSeeder extends Seeder
         Train::create([
             'plants_id' => '1',
             'capacity' => '700',
-            'boosters_quantity' => '2',
             'tds' => '36000',
 
             'multimedia_filters_quantity' => '3',
             'polish_filters_types_id' => '10',
             'polish_filters_quantity' => '6',
 
+            'boosters_quantity' => '2',
             // status => 'Enable',
             // type => 'Enable',
             'membrane_types_id' => '1',
@@ -56,13 +56,13 @@ class TrainsSeeder extends Seeder
         Train::create([
             'plants_id' => '2',
             'capacity' => '700',
-            'boosters_quantity' => '0',
             'tds' => '36000',
 
             'multimedia_filters_quantity' => '2',
             'polish_filters_types_id' => '5',
             'polish_filters_quantity' => '1',
 
+            'boosters_quantity' => '0',
             // status => 'Enable',
             'membrane_types_id' => '1',
             'membrane_elements' => '49',
@@ -73,6 +73,11 @@ class TrainsSeeder extends Seeder
             'plants_id' => '2',
             'capacity' => '700',
             'tds' => '36000',
+
+            'multimedia_filters_quantity' => '2',
+            'polish_filters_types_id' => '5',
+            'polish_filters_quantity' => '1',
+
             'boosters_quantity' => '0',
             // status => 'Enable',
             'membrane_types_id' => '1',
@@ -97,13 +102,13 @@ class TrainsSeeder extends Seeder
         Train::create([
             'plants_id' => '3',
             'capacity' => '700',
-            'boosters_quantity' => '0',
             'tds' => '12000',
 
             'multimedia_filters_quantity' => '2',
             'polish_filters_types_id' => '10',
             'polish_filters_quantity' => '3',
 
+            'boosters_quantity' => '0',
             // status => 'Enable',
             'membrane_types_id' => '1',
             'membrane_elements' => '42',
@@ -114,6 +119,11 @@ class TrainsSeeder extends Seeder
             'plants_id' => '3',
             'capacity' => '700',
             'tds' => '12000',
+
+            'multimedia_filters_quantity' => '2',
+            'polish_filters_types_id' => '10',
+            'polish_filters_quantity' => '3',
+
             'boosters_quantity' => '0',
             // status => 'Enable',
             'membrane_types_id' => '1',

@@ -17,14 +17,14 @@
         </div>
 
         <a href="{{ route('companies.services.plants.create', [$company, $service]) }}"
-            class="btn btn-lg btn-success">
+            class="btn btn-lg btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-plus-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                 <path
                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg>
-            <span>Add Plant</span>
+            <strong>Add Plant</strong>
         </a>
     </div>
 
@@ -182,7 +182,7 @@
 
                                 <div class="accordion" id="accordionExample" data-toggle-hover="true">
                                     <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
+                                        <h2 class="accordion-header" id="heading-{{ $plant->id }}">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#accordion-{{ $plant->id }}" aria-expanded="true"
                                                 aria-controls="accordion-{{ $plant->id }}">
@@ -190,7 +190,8 @@
                                             </button>
                                         </h2>
                                         <div id="accordion-{{ $plant->id }}" class="accordion-collapse collapse"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                            aria-labelledby="heading-{{ $plant->id }}"
+                                            data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <table class="table table-sm border-bottom">
                                                     <tbody class="text-center">
@@ -232,7 +233,7 @@
                                                             <td class="col-4">
                                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
                                                                     @if (!$loop->first && $loop->last)
-                                                                    <span>ft²</span> /
+                                                                        <span>ft²</span> /
                                                                     @endif
                                                                     <span
                                                                         class="text-primary h3">{{ $train->membrane_type->ft2 }}</span>
@@ -356,32 +357,32 @@
             @endforelse
         </div>
     </section>
-</div>
 
-@section('livewire-js')
-    <script>
-        Livewire.on('alertExistParameters', plantId => {
-            Swal.fire({
-                title: "Today's parameters have already been recorded",
-                text: "Do you want to upload backward parameters?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, upload!',
-                cancelButtonText: 'NO',
-                backdrop: true,
-                showLoaderOnConfirm: true,
-                preConfirm: () => {
-                    let company = @json($company);
-                    let service = @json($service);
+    @section('livewire-js')
+        <script>
+            Livewire.on('alertExistParameters', plantId => {
+                Swal.fire({
+                    title: "Today's parameters have already been recorded",
+                    text: "Do you want to upload backward parameters?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, upload!',
+                    cancelButtonText: 'NO',
+                    backdrop: true,
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        let company = @json($company);
+                        let service = @json($service);
 
-                    window.location.replace("http://platform-cws.test/companies/" +
-                        company + "/services/" + service + "/plants/" + plantId +
-                        "/parameters/create/?oldParameters");
-                },
-                allowOutsideClick: () => !Swal.isLoading()
+                        window.location.replace("http://platform-cws.test/companies/" +
+                            company + "/services/" + service + "/plants/" + plantId +
+                            "/parameters/create/?oldParameters");
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection
+</div>

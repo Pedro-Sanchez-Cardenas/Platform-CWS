@@ -22,7 +22,6 @@ class Plant extends Model
         'installed_capacity',
         'design_limit',
         'companies_id',
-        'clients_id',
         'personalitation_plants_id',
         'countries_id',
         'plant_types_id',
