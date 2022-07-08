@@ -1,6 +1,4 @@
 @extends('layouts/contentLayoutMaster')
-
-@section('title', 'Companies')
 @section('vendor-style')
     {{-- SweetAlert --}}
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">

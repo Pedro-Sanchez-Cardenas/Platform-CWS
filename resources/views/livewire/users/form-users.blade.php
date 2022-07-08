@@ -17,7 +17,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4 mb-2">
-                                    <label for="name1" class="form-label">name</label>
+                                    <label for="nameform" class="form-label">Name</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('name') border-danger @enderror">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -30,7 +30,7 @@
                                             </svg>
                                         </span>
                                         <input type="text"
-                                            class="form-control @error('name') border-danger @enderror" id="name1"
+                                            class="form-control @error('name') border-danger @enderror" id="nameform"
                                             wire:model='name' placeholder="User name">
                                     </div>
                                     @error('name')
@@ -38,7 +38,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-4 mb-2">
-                                    <label for="name" class="form-label">Phone</label>
+                                    <label for="phoneform" class="form-label">Phone</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('phone_1') border-danger @enderror">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -58,7 +58,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-4 mb-2">
-                                    <label for="phone" class="form-label">Phone</label>
+                                    <label for="phoneform" class="form-label">Phone</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('phone_2') border-danger @enderror">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -71,14 +71,14 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error('phone_2') border-danger @enderror"
-                                            id="phone2" wire:model="phone_2" placeholder="Phone 2...">
+                                            id="phoneform" wire:model="phone_2" placeholder="Phone 2...">
                                     </div>
                                     @error('phone_2')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <label for="name" class="form-label">Email</label>
+                                    <label for="emailform" class="form-label">Email</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('email') border-danger @enderror">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -90,7 +90,7 @@
                                             </svg>
                                         </span>
                                         <input type="email"
-                                            class="form-control @error('email') border-danger @enderror" id="email"
+                                            class="form-control @error('email') border-danger @enderror" id="emailform"
                                             wire:model="email" placeholder="email...">
                                     </div>
                                     @error('email')
@@ -98,7 +98,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <label for="password" class="form-label">password</label>
+                                    <label for="passwordform" class="form-label">Password</label>
                                     <div class="input-group form-password-toggle">
                                         <input wire:model="password" type="password" class="form-control  @error('password') border-danger @enderror" id="basic-default-password"
                                             placeholder="Your Password" aria-describedby="basic-default-password">
@@ -116,10 +116,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md mb-2">
-                                    <label for="companies" class="form-label">company</label>
+                                    <label for="companiesform" class="form-label">Company</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('companies_id') border-danger @enderror"
-                                            id="basic-addon-search1">
+                                            id="basic-addon-searchform">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor"
                                                 class="bi bi-person-fill @error('companies_id') text-danger @enderror"
@@ -129,7 +129,7 @@
                                             </svg>
                                         </span>
                                         <select class="form-select  @error('companies_id') border-danger @enderror"
-                                            wire:model="companies_id" id="companies">
+                                            wire:model="companies_id" id="companiesfomr">
                                             <option value="">SELECT OPERATOR</option>
                                             @foreach ($company as $company)
                                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -141,10 +141,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md mb-2">
-                                    <label for="" class="form-label">Rol</label>
+                                    <label for="rolfomr" class="form-label">Role</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('role') border-danger @enderror"
-                                            id="basic-addon-search1">
+                                            id="basic-addon-searchfor">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor"
                                                 class="bi bi-person-fill @error('role') text-danger @enderror"
@@ -154,8 +154,8 @@
                                             </svg>
                                         </span>
                                         <select class="form-select @error('role') border-danger @enderror"
-                                            wire:model="role" id="rol">
-                                            <option value="">Select rol</option>
+                                            wire:model="role" id="rolform">
+                                            <option value="">SELECT ROLE</option>
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
@@ -166,10 +166,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md mb-2">
-                                    <label for="services_id" class="form-label">service</label>
+                                    <label for="services_id" class="form-label">Service</label>
                                     <div class="input-group">
                                         <span class="input-group-text @error('services_id') border-danger @enderror"
-                                            id="basic-addon-search1">
+                                            id="basic-addon-searcform">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor"
                                                 class="bi bi-person-fill @error('services_id') text-danger @enderror"
@@ -179,8 +179,8 @@
                                             </svg>
                                         </span>
                                         <select class="form-select @error('services_id') border-danger @enderror"
-                                            wire:model="services_id" id="service">
-                                            <option value="">Select service</option>
+                                            wire:model="services_id" id="serviceform">
+                                            <option value="">SELECT SERVICES</option>
                                             @foreach ($services as $service)
                                                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                                             @endforeach
@@ -203,7 +203,6 @@
         </div>
     </div>
     @push('livewire-js')
-        <script src="sweetalert2.all.min.js"></script>
         <script>
             Livewire.on('success-alert', postId => {
                 Swal.fire({

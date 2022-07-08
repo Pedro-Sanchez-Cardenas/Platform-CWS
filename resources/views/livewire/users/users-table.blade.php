@@ -1,5 +1,4 @@
 <div>
-
     <head>
         <div class="d-flex justify-content-between align-items-center">
             <div class="w-25">
@@ -22,7 +21,6 @@
             </div>
         </div>
     </head>
-
     <section class="d-flex justify-content align-items mt-1 mb-2">
         <div wire:loading='query' wira:target="query">
             <span class="spinner-border text-danger"></span>
@@ -112,15 +110,14 @@
                 @endforeach
             </tbody>
         </table>
-
         <div class="modal text-start" wire:ignore.self id="edit" tabindex="-1"
             aria-labelledby="myModalLabel17" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel17">
+                        <h4 class="modal-title" id="myModalLabel177">
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">edit users</font>
+                                <font style="vertical-align: inherit;">Edit user</font>
                             </font>
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -131,7 +128,7 @@
                             <font style="vertical-align: inherit;">
                                 <div class="row">
                                     <div class="col-md-4 mb-2">
-                                        <label for="name1" class="form-label">name</label>
+                                        <label for="nameedit" class="form-label">Name</label>
                                         <div class="input-group">
                                             <span class="input-group-text @error('name') border-danger @enderror">
                                                 <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14"
@@ -146,14 +143,14 @@
                                             </span>
                                             <input type="text"
                                                 class="form-control @error('name') border-danger @enderror"
-                                                id="name1" wire:model='name' placeholder="User name">
+                                                id="nameedit" wire:model='name' placeholder="User name">
                                         </div>
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-2">
-                                        <label for="name" class="form-label">Phone</label>
+                                        <label for="phoneedit" class="form-label">Phone</label>
                                         <div class="input-group">
                                             <span class="input-group-text @error('phone_1') border-danger @enderror">
                                                 <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14"
@@ -168,14 +165,14 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error('phone_1') border-danger @enderror"
-                                                id="phone" wire:model="phone_1" placeholder="Phone 1...">
+                                                id="phoneedit" wire:model="phone_1" placeholder="Phone 1...">
                                         </div>
                                         @error('phone_1')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-2">
-                                        <label for="phone" class="form-label">Phone</label>
+                                        <label for="phoneeditt" class="form-label">Phone</label>
                                         <div class="input-group">
                                             <span class="input-group-text @error('phone_2') border-danger @enderror">
                                                 <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14"
@@ -190,14 +187,14 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error('phone_2') border-danger @enderror"
-                                                id="phone" wire:model="phone_2" placeholder="Phone 2...">
+                                                id="phoneeditt" wire:model="phone_2" placeholder="Phone 2...">
                                         </div>
                                         @error('phone_2')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label for="name" class="form-label">Email</label>
+                                        <label for="emialedit" class="form-label">Email</label>
                                         <div class="input-group">
                                             <span class="input-group-text @error('email') border-danger @enderror">
                                                 <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14"
@@ -212,18 +209,18 @@
                                             </span>
                                             <input type="email"
                                                 class="form-control @error('email') border-danger @enderror"
-                                                id="email" wire:model="email" placeholder="email...">
+                                                id="emailedit" wire:model="email" placeholder="email...">
                                         </div>
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label for="companies" class="form-label">company</label>
+                                        <label for="companies" class="form-label">Company</label>
                                         <div class="input-group">
                                             <span
                                                 class="input-group-text @error('companies_id') border-danger @enderror"
-                                                id="basic-addon-search1">
+                                                id="basic-addon-sear">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor"
                                                     class="bi bi-person-fill @error('companies_id') text-danger @enderror"
@@ -234,8 +231,8 @@
                                             </span>
                                             <select
                                                 class="form-select  @error('companies_id') border-danger @enderror"
-                                                wire:model="companies_id" id="companies">
-                                                <option value="">SELECT OPERATOR</option>
+                                                wire:model="companies_id" id="companiesedit">
+                                                <option value="">SELECT COMPANY</option>
                                                 @foreach ($company as $company)
                                                     <option value="{{ $company->id }}">{{ $company->name }}
                                                     </option>
@@ -247,10 +244,10 @@
                                         @enderror
                                     </div>
                                     <div class="col-md mb-2">
-                                        <label for="" class="form-label">Rol</label>
+                                        <label for="roleedit" class="form-label">Role</label>
                                         <div class="input-group">
                                             <span class="input-group-text @error('role') border-danger @enderror"
-                                                id="basic-addon-search1">
+                                                id="basic-addon-rch1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor"
                                                     class="bi bi-person-fill @error('role') text-danger @enderror"
@@ -260,8 +257,8 @@
                                                 </svg>
                                             </span>
                                             <select class="form-select @error('role') border-danger @enderror"
-                                                wire:model="role" id="rol">
-                                                <option value="">Select rol</option>
+                                                wire:model="role" id="roleedit">
+                                                <option value="">SELECT ROL</option>
                                                 @foreach ($roles as $role)
                                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                 @endforeach
@@ -272,10 +269,10 @@
                                         @enderror
                                     </div>
                                     <div class="col-md mb-2">
-                                        <label for="service" class="form-label">service</label>
+                                        <label for="serviceedit" class="form-label">Services</label>
                                         <div class="input-group">
                                             <span class="input-group-text @error('service') border-danger @enderror"
-                                                id="basic-addon-search1">
+                                                id="basic-addon-s1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor"
                                                     class="bi bi-person-fill @error('service') text-danger @enderror"
@@ -285,8 +282,8 @@
                                                 </svg>
                                             </span>
                                             <select class="form-select @error('service') border-danger @enderror"
-                                                wire:model="service" id="service">
-                                                <option value="">Select service</option>
+                                                wire:model="service" id="serviceeditt">
+                                                <option value="">SELECT SERVICES</option>
                                                 @foreach ($services as $service)
                                                     <option value="{{ $service->id }}">{{ $service->name }}
                                                     </option>
@@ -313,7 +310,6 @@
 
     <div class="position-absolute bottom-0 end-0">{{ $users->links() }}</div>
     @push('livewire-js')
-        <script src="sweetalert2.all.min.js"></script>
         <script>
             Livewire.on('deleteUser', userId => {
                 Swal.fire({
@@ -336,8 +332,6 @@
                 })
             });
         </script>
-
-        <script src="sweetalert2.all.min.js"></script>
         <script>
             Livewire.on('success-alert2', postId => {
                 Swal.fire({
@@ -350,60 +344,63 @@
             });
         </script>
     @endpush
-</div>
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">View user</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="info-container">
-                 {{--}}   @foreach ($users as $user) {{--}}
-                    <ul class="list-unstyled">
-                        <li class="mb-25">
-                            <span class="fw-bolder me-25">FullName:</span>
-                            <span>{{ $user->name }}</span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25"> Email:</span>
-                            <span> {{ $user->email }} </span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25">Phone 1:</span>
-                            <span class="badge bg-light-success"> {{ $user->phone_1 }} </span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25">Phone 2:</span>
-                            <span> {{ $user->phone2 }} </span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25">Company</span>
-                            <span>{{ $user->company->name }} </span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25">Role:</span>
-                            <span>{{ $user->getRoleNames()->first() }}</span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25">service:</span>
-                            <span></span>
-                        </li>
-                        <li class="mb-75">
-                            <span class="fw-bolder me-25">create_at:</span>
-                            <span>{{ $user->created_at->toDateString() }}</span>
-                        </li>
-                    </ul>
-                    <div class="d-flex justify-content-center pt-2">
 
-                        <button class="btn btn-outline-primary waves-effect" type="button" data-bs-dismiss="modal">
-                            Cerrar</button>
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View user</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="info-container">
+                        {{-- }}   @foreach ($users as $user) {{ --}}
+                        <ul class="list-unstyled">
+                            <li class="mb-25">
+                                <span class="fw-bolder me-25">FullName:</span>
+                                <span>{{ $user->name }}</span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25"> Email:</span>
+                                <span> {{ $user->email }} </span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25">Phone 1:</span>
+                                <span class="badge bg-light-success"> {{ $user->phone_1 }} </span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25">Phone 2:</span>
+                                <span> {{ $user->phone2 }} </span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25">Company</span>
+                                <span>{{ $user->company->name }} </span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25">Role:</span>
+                                <span>{{ $user->getRoleNames()->first() }}</span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25">Service:</span>
+                                <span></span>
+                            </li>
+                            <li class="mb-75">
+                                <span class="fw-bolder me-25">Create_at:</span>
+                                <span>{{ $user->created_at->toDateString() }}</span>
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-center pt-2">
+
+                            <button class="btn btn-outline-primary waves-effect" type="button"
+                                data-bs-dismiss="modal">
+                                Default</button>
+                        </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
