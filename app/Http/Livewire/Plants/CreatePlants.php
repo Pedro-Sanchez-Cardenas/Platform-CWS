@@ -102,22 +102,24 @@ class CreatePlants extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function addTrain(){
-        if($this->trains > 0 && $this->trains < 5){
+    public function addTrain()
+    {
+        if ($this->trains > 0 && $this->trains < 5) {
             $this->trains++;
         }
     }
 
-    public function removeTrain(){
-        if($this->trains > 1){
+    public function removeTrain()
+    {
+        if ($this->trains > 1) {
             $this->trains--;
         }
     }
 
     public function store()
     {
-       /* try {
-            DB::transaction(function () {*/
+        try {
+            DB::transaction(function () {
                 PersonalitationPlant::create([
                     'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
 
@@ -166,7 +168,8 @@ class CreatePlants extends Component
                 PlantContract::create([
                     'plants_id' => $plantId->id,
                     'clients_id' => isset($this->contract['client']) ? $this->contract['client'] : null,
-                    'bot_m3' => $this->costs['botM3'],
+
+                    'bot_m3' => isset($this->costs['botM3']) ? $this->costs['botM3'] : null,
                     'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
                     'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
                     'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
@@ -184,10 +187,10 @@ class CreatePlants extends Component
 
                 $idPlant = Plant::latest('id')->first();
                 $this->emit('createTrain', $idPlant);
-           /* });
+            });
         } catch (Exception $e) {
             dd('ERROR TRY CATCH');
-        }*/
+        }
     }
 
     public function render()
