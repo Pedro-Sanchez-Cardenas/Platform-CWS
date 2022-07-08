@@ -19,7 +19,12 @@ class CreateTrainsTable extends Migration
             $table->double('capacity')->nullable();
 
             $table->integer('boosters_quantity')->default('0');
+            $table->integer('multimedia_filters_quantity')->default('0');
+
             $table->double('tds')->nullable();
+
+            $table->foreignId('polish_filters_types_id')->nullable()->constrained();
+            $table->integer('polish_filters_quantity')->nullable();
 
             $table->foreignId('membrane_types_id')->nullable()->constrained();
             $table->integer('membrane_elements')->nullable();

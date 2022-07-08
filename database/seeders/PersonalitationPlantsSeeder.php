@@ -15,10 +15,7 @@ class PersonalitationPlantsSeeder extends Seeder
     public function run()
     {
         PersonalitationPlant::create([
-            'multimedia_filters_quantity' => '3',
             'cisterns_quantity' => '2',
-            'polish_filters_types_id' => '10',
-            'polish_filters_quantity' => '6',
 
             'irrigation' => 'yes',
             'sdi' => 'no',
@@ -33,10 +30,7 @@ class PersonalitationPlantsSeeder extends Seeder
         ]);
 
         PersonalitationPlant::create([
-            'multimedia_filters_quantity' => '2',
             'cisterns_quantity' => '3',
-            'polish_filters_types_id' => '5',
-            'polish_filters_quantity' => '1',
 
             'irrigation' => 'no',
             'sdi' => 'yes',
@@ -51,10 +45,7 @@ class PersonalitationPlantsSeeder extends Seeder
         ]);
 
         PersonalitationPlant::create([
-            'multimedia_filters_quantity' => '2',
             'cisterns_quantity' => '2',
-            'polish_filters_types_id' => '10',
-            'polish_filters_quantity' => '3',
 
             'irrigation' => 'no',
             'sdi' => 'yes',

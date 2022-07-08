@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Plants;
 
-use App\Models\Cistern;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Country;
@@ -14,13 +13,14 @@ use App\Models\Plant;
 use App\Models\PlantContract;
 use App\Models\PlantType;
 use App\Models\PolishFiltersType;
-use App\Models\Train;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CreatePlants extends Component
 {
@@ -32,6 +32,10 @@ class CreatePlants extends Component
     public $boosters;
     public $contract;
     public $costs;
+    public $trains = 1;
+
+    protected $listeners = ['postAdded'];
+
 
     protected function rules()
     {
@@ -76,12 +80,14 @@ class CreatePlants extends Component
 
             // Plant Contract
             'contract' => ['min:1', 'max:1', 'array:yearsOfContract, from, till, billingDay, paymentType, minimumConsumption'], // We validate the array
+            'contract.client' => ['required', 'integer', Rule::exists('clients', 'id')],
             'contract.yearsOfContract' => ['required', 'integer', 'between:1,16'],
             'contract.from' => ['required', 'date'],
             'contract.till' => ['required', 'date', 'after:contract.from'],
             'contract.billingDay' => ['required', 'integer', 'between:1,31'],
             'contract.paymentType' => ['required', 'integer', Rule::exists('payment_types', 'id')],
             'contract.minimumConsumption' => ['nullable', 'numeric', 'min:0'],
+            'contract.observations' => ['required', 'min:5', 'max:10000'],
 
             //Costs
             'costs.botM3' => ['sometimes', 'string', 'min:0'],
@@ -89,17 +95,6 @@ class CreatePlants extends Component
             'costs.oymM3' => ['sometimes', 'string', 'min:0'],
             'costs.oymFixed' => ['sometimes', 'string', 'min:0'],
             'costs.remineralisation' => ['sometimes', 'string', 'min:0'],
-
-            // Trains
-            // 'trains' => ['nullable', 'min:1|max:5|array:capacity,tds,booster,multimediaFilsters,polishFilters,polishQuantity,mArea,mElements'], // We validate the array
-            // 'trains.capacity.*' => ['required', 'integer', 'min:0'],
-            // 'trains.tds.*' => ['required', 'integer', 'min:0'],
-            // 'trains.booster.*' => ['required', 'integer'],
-            // 'trains.multimediaFilsters.*' => ['required', 'integer'],
-            // 'trains.polishFilters.*' => ['required', 'integer'],
-            // 'trains.polishQuantity.*' => ['required', 'integer'],
-            // 'trains.mArea.*' => ['required', 'integer'],
-            // 'trains.mElements.*' => ['required', 'integer'],
         ];
     }
 
@@ -108,15 +103,27 @@ class CreatePlants extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function addTrain()
+    {
+        if ($this->trains > 0 && $this->trains < 5) {
+            $this->trains++;
+        }
+    }
+
+    public function removeTrain()
+    {
+        if ($this->trains > 1) {
+            $this->trains--;
+        }
+    }
+
     public function store()
     {
+
         /*try {
             DB::transaction(function () {*/
         PersonalitationPlant::create([
-            'multimedia_filters_quantity' => 2,
             'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
-            'polish_filters_quantity' => 2,
-            'polish_filter_types_id' => 1,
 
             'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
             'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
@@ -131,71 +138,58 @@ class CreatePlants extends Component
 
         $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
 
-        if(isset($this->plant['cover'])){
-            $this->plant['cover']->store('plant.covers');
+        if (isset($this->plant['cover'])) {
+            $urlCover = $this->plant['cover']->storeAs('public/plant/covers', str_replace(" ", "_", $this->plant['name']) . '.jpg');
         }
 
-        if(isset($this->plant['handbooks'])){
+        if (isset($this->plant['handbooks'])) {
             foreach ($this->plant['handbooks'] as $handbook) {
-                $handbook->store('plant.handbooks');
+                $handbook->store('plant/handbooks');
             }
         }
 
         Plant::create([
             'name' => $this->plant['name'],
             'location' => $this->plant['location'],
-            'cover_path' => isset($this->plant['cover']) ? $this->plant['cover'] : null, // nullable
+            'cover_path' => isset($urlCover) ? $urlCover : null, // nullable
             'installed_capacity' => 0,
             'design_limit' => 0,
 
             'companies_id' => $this->plant['company'],
-            'clients_id' => 1,
             'personalitation_plants_id' => $idPersonalitationPlant->id,
+
             'countries_id' => $this->plant['country'],
             'plant_types_id' => $this->plant['type'],
             'operator' => $this->plant['operator'], //nullable
-            'manager' => $this->plant['manager'], // nullable
-            'user_created_at',
+            'manager' => isset($this->plant['manager']) ? ($this->plant['manager'] != "" ? $this->plant['manager'] : null) : null, // nullable
+            'user_created_at' => Auth::id()
         ]);
 
         $plantId = Plant::latest('id')->first();
 
         PlantContract::create([
-            'plant_id' => $plantId->id,
-            'bot_m3' => $this->costs['botM3'],
-            'bot_fixed' => $this->costs['botFixed'],
-            'oym_m3' => $this->costs['oymM3'],
-            'oym_fixed' => $this->costs['oymFixed'],
-            'remineralitation' => $this->costs['remineralisationM3'],
-            'total_m3 ' => 0,
-            'total_month' => 0,
+            'plants_id' => $plantId->id,
+            'clients_id' => isset($this->contract['client']) ? $this->contract['client'] : null,
+
+            'bot_m3' => isset($this->costs['botM3']) ? $this->costs['botM3'] : null,
+            'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
+            'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
+            'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
+            'remineralitation' => isset($this->costs['remineralisationM3']) ? $this->costs['remineralisationM3'] : null,
 
             'years' => $this->contract['yearsOfContract'],
             'from' => $this->contract['from'],
-            'till' => $this->contract['till'], //nullable
-            'minimun_consumption' => $this->contract['minimumConsumption'],
+            'till' => Carbon::create($this->contract['from'])->addYears($this->contract['yearsOfContract']), //nullable
+            'minimun_consumption' => isset($this->contract['minimumConsumption']) ? $this->contract['minimumConsumption'] : null,
             'billing_day' => $this->contract['billingDay'], // nullable
-            'payment_types_id' => $this->plants['contract.paymenttypes'], // nullable
+            'payment_types_id' => $this->contract['paymentType'], // nullable
+            'observations' => isset($this->contract['observations']) ? $this->contract['observations'] : null,
             'user_created_at' => Auth::id(),
         ]);
 
-
         $idPlant = Plant::latest('id')->first();
-
-        for ($t = 0; $t < count($this->trainIndex); $t++) {
-            Train::create([
-                'plants_id' => $idPlant->id,
-                'capacity' => $this->trains['capacity'][$t],
-                'boosters_quantity' => $this->trains['booster'][$t],
-                'tds' => $this->trains['tds'][$t],
-                'status' => 'Enable',
-                'type' => 'Train',
-                'membrane_active_areas_id' => $this->trains['mArea'][$t],
-                'membrane_elements' => $this->trains['mElements'][$t],
-                'user_created_at' => Auth::id(),
-            ]);
-        }
-        /*});
+        $this->emit('createTrain', $idPlant);
+        /* });
         } catch (Exception $e) {
             dd('ERROR TRY CATCH');
         }*/

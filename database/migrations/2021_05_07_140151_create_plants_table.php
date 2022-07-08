@@ -22,9 +22,7 @@ class CreatePlantsTable extends Migration
             $table->double('design_limit')->nullable();
 
             $table->foreignId('personalitation_plants_id')->constrained();
-
             $table->foreignId('companies_id')->constrained();
-            $table->foreignId('clients_id')->nullable()->constrained();
 
             $table->foreignId('operator')->constrained('users');
             $table->foreignId('manager')->nullable()->constrained('users');

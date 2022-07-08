@@ -17,12 +17,20 @@ class Train extends Model
     protected $fillable = [
         'plants_id',
         'capacity',
+
         'boosters_quantity',
+        'multimedia_filters_quantity',
+        
         'tds',
         'status',
         'type',
-        'membrane_active_areas_id',
+
+        'polish_filters_types_id',
+        'polish_filters_quantity',
+
+        'membrane_types_id',
         'membrane_elements',
+
         'user_created_at',
         'user_updated_at'
     ];
@@ -34,7 +42,12 @@ class Train extends Model
 
     public function polish_filters_type()
     {
-        return $this->hasOne(PolishFilterType::class, 'id', 'polish_filters_types_id');
+        return $this->hasOne(PolishFiltersType::class, 'id', 'polish_filters_types_id');
+    }
+
+    public function membrane_type()
+    {
+        return $this->hasOne(MembraneType::class, 'id', 'membrane_types_id');
     }
 
     public function pretreatments()
