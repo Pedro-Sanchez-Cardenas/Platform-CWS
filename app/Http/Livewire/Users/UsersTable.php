@@ -59,7 +59,7 @@ class UsersTable extends Component
         $this->phone_1 = $user->phone_1;
         $this->phone_2 = $user->phone_2;
         $this->password = $user->password;
-        $this->role = Role::where('name', $user->getRoleNames()->first())->first();
+        $this->role = Role::where('name', $user->getRoleNames()->first())->first()->id;
         $this->companies_id = $user->companies_id;
         $this->service = $user->services_id;
       

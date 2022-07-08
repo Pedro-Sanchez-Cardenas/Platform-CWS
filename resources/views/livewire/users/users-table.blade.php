@@ -22,11 +22,15 @@
         </div>
     </head>
     <section class="d-flex justify-content align-items mt-1 mb-2">
-        <div wire:loading='query' wira:target="query">
-            <span class="spinner-border text-danger"></span>
+        <div class="col-12" wire:loading wire:target='search'>
+            <div class="text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="spinner-border text-danger"></span>
+                    <span class="text-danger h1 ms-1">Loading...</span>
+                </div>
+            </div>
         </div>
-
-        <table wire:loading.remove wire:target="query" class="table">
+        <table wire:loading.remove wire:target='search' class="table">
             <thead class="text-center">
                 <tr>
                     <th>Name</th>
