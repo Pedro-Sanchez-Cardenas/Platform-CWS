@@ -12,11 +12,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Search extends Component
 {
-    
     public $search;
     public $model;
-    public $fields; 
-    public $relationships;
+    public $fields;
+    
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -25,21 +24,15 @@ class Search extends Component
     public function mount()
     {
         // Definimos los campos de la tabla en los que queremos buscar
-        $this->fields = ['name', 'email','phone_1','phone_2','companies_id',];
-        // Si queremos añadir relaciones para evitar el N+1
-        $this->relationships = ['relationship'];
+        $this->fields = ['name'];
         //Definimos el modelo 
-        $this->model = '\App\Models\User;';
+        $this->model = User::class;
     }
 
     public function render()
     {
-        return view('livewire.users.search', [
-            'results' => empty($this->search) ? collect() : $this->query(),
-            'users' => User::all(),
-            'services' => Service::all(),
-            'roles' => Role::all(),
-            'company' => Company::all()
+        return view('livewire.search', [
+            'users' => empty($this->search) ? User::paginate(10) : $this->query(),
         ]);
     }
 
@@ -52,10 +45,11 @@ class Search extends Component
     {
         return $this->whereConditions()
             // Si no queremos añadir relationships lo quitamos...
-            ->with($this->relationships)
+            //->with($this->relationships)
             // Por ejemplo...
-            ->take(10)
-            ->get();
+            //->take(10)
+            //->get();
+            ->paginate(10);
     }
 
     private function whereConditions()
@@ -69,4 +63,3 @@ class Search extends Component
         return $query;
     }
 }
-  
