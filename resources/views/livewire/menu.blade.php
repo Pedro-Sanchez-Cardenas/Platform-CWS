@@ -65,8 +65,8 @@
 
         <div class="collapse" id="collapse-settings">
             <div class="card card-body py-0">
-                <li class="nav-item {{ Route::currentRouteName() === 'dashboard' ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}" class="d-flex align-items-center">
+                <li class="nav-item {{ Route::currentRouteName() === 'users' ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="d-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-people-fill" viewBox="0 0 16 16">
                             <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
