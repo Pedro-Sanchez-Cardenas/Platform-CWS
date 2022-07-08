@@ -38,12 +38,18 @@
             </div>
         </div>
 
-        <div class="row match-height">
+        <div class="row match-height" wire:loading.remove wire:target='search'>
             @forelse ($plants as $plant)
-                <div wire:loading.remove wire:target='search' class="col-sm-12 col-md-6 col-lg-4">
+                <div  class="col-sm-12 col-md-6 col-lg-4">
                     <div class="card">
-                        <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
-                            class="img-thumbnail" alt="plant_cover">
+                        @if ($plant->cover_path != null)
+                        {{ Storage::get($plant->cover_path) }}
+                            <img src="{{ Storage::url($plant->cover_path) }}"
+                                class="img-thumbnail height-250" alt="plant_cover">
+                        @else
+                            <img src="{{ Storage::url('public/plant/default.png') }}"
+                                class="img-thumbnail height-250 py-3 px-2" alt="plant_cover">
+                        @endif
 
                         @hasanyrole('Super-Admin|Operations-Manager|Administrative-Manager')
                             <div class="d-flex btn-group">

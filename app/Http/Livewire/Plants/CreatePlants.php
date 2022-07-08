@@ -20,6 +20,7 @@ use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CreatePlants extends Component
 {
@@ -121,74 +122,74 @@ class CreatePlants extends Component
 
         /*try {
             DB::transaction(function () {*/
-                PersonalitationPlant::create([
-                    'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
+        PersonalitationPlant::create([
+            'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
 
-                    'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
-                    'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
-                    'chloride' => isset($this->personalisations['chloride']) ? 'yes'  : 'no',
-                    'well_pump' => isset($this->personalisations['wellPump']) ? 'yes'  : 'no',
-                    'feed_pump' => isset($this->personalisations['feedPump']) ? 'yes'  : 'no',
-                    'boosterc' => isset($this->personalisations['booster_flow']) ? 'yes'  : 'no',
-                    'feed_flow' => isset($this->personalisations['feed_flow']) ? 'yes'  : 'no',
-                    'permeate_flow' => isset($this->personalisations['permeate_flow']) ? 'yes'  : 'no',
-                    'reject_flow' => isset($this->personalisations['reject_flow']) ? 'yes'  : 'no'
-                ]);
+            'irrigation' => isset($this->personalisations['irrigation']) ? 'yes' : 'no',
+            'sdi' => isset($this->personalisations['sdi']) ? 'yes' : 'no',
+            'chloride' => isset($this->personalisations['chloride']) ? 'yes'  : 'no',
+            'well_pump' => isset($this->personalisations['wellPump']) ? 'yes'  : 'no',
+            'feed_pump' => isset($this->personalisations['feedPump']) ? 'yes'  : 'no',
+            'boosterc' => isset($this->personalisations['booster_flow']) ? 'yes'  : 'no',
+            'feed_flow' => isset($this->personalisations['feed_flow']) ? 'yes'  : 'no',
+            'permeate_flow' => isset($this->personalisations['permeate_flow']) ? 'yes'  : 'no',
+            'reject_flow' => isset($this->personalisations['reject_flow']) ? 'yes'  : 'no'
+        ]);
 
-                $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
+        $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
 
-                if (isset($this->plant['cover'])) {
-                    $urlCover = $this->plant['cover']->store('plant.covers');
-                }
+        if (isset($this->plant['cover'])) {
+            $urlCover = $this->plant['cover']->storeAs('public/plant/covers', str_replace(" ", "_", $this->plant['name']) . '.jpg');
+        }
 
-                if (isset($this->plant['handbooks'])) {
-                    foreach ($this->plant['handbooks'] as $handbook) {
-                        $handbook->store('plant.handbooks');
-                    }
-                }
+        if (isset($this->plant['handbooks'])) {
+            foreach ($this->plant['handbooks'] as $handbook) {
+                $handbook->store('plant/handbooks');
+            }
+        }
 
-                Plant::create([
-                    'name' => $this->plant['name'],
-                    'location' => $this->plant['location'],
-                    'cover_path' => isset($urlCover) ? $urlCover : null, // nullable
-                    'installed_capacity' => 0,
-                    'design_limit' => 0,
+        Plant::create([
+            'name' => $this->plant['name'],
+            'location' => $this->plant['location'],
+            'cover_path' => isset($urlCover) ? $urlCover : null, // nullable
+            'installed_capacity' => 0,
+            'design_limit' => 0,
 
-                    'companies_id' => $this->plant['company'],
-                    'personalitation_plants_id' => $idPersonalitationPlant->id,
+            'companies_id' => $this->plant['company'],
+            'personalitation_plants_id' => $idPersonalitationPlant->id,
 
-                    'countries_id' => $this->plant['country'],
-                    'plant_types_id' => $this->plant['type'],
-                    'operator' => $this->plant['operator'], //nullable
-                    'manager' => isset($this->plant['manager']) ? ($this->plant['manager'] != "" ? $this->plant['manager'] : null): null, // nullable
-                    'user_created_at' => Auth::id()
-                ]);
+            'countries_id' => $this->plant['country'],
+            'plant_types_id' => $this->plant['type'],
+            'operator' => $this->plant['operator'], //nullable
+            'manager' => isset($this->plant['manager']) ? ($this->plant['manager'] != "" ? $this->plant['manager'] : null) : null, // nullable
+            'user_created_at' => Auth::id()
+        ]);
 
-                $plantId = Plant::latest('id')->first();
+        $plantId = Plant::latest('id')->first();
 
-                PlantContract::create([
-                    'plants_id' => $plantId->id,
-                    'clients_id' => isset($this->contract['client']) ? $this->contract['client'] : null,
+        PlantContract::create([
+            'plants_id' => $plantId->id,
+            'clients_id' => isset($this->contract['client']) ? $this->contract['client'] : null,
 
-                    'bot_m3' => isset($this->costs['botM3']) ? $this->costs['botM3'] : null,
-                    'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
-                    'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
-                    'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
-                    'remineralitation' => isset($this->costs['remineralisationM3']) ? $this->costs['remineralisationM3'] : null,
+            'bot_m3' => isset($this->costs['botM3']) ? $this->costs['botM3'] : null,
+            'bot_fixed' => isset($this->costs['botFixed']) ? $this->costs['botFixed'] : null,
+            'oym_m3' => isset($this->costs['oymM3']) ? $this->costs['oymM3'] : null,
+            'oym_fixed' => isset($this->costs['oymFixed']) ? $this->costs['oymFixed'] : null,
+            'remineralitation' => isset($this->costs['remineralisationM3']) ? $this->costs['remineralisationM3'] : null,
 
-                    'years' => $this->contract['yearsOfContract'],
-                    'from' => $this->contract['from'],
-                    'till' => Carbon::create($this->contract['from'])->addYears($this->contract['yearsOfContract']), //nullable
-                    'minimun_consumption' => isset($this->contract['minimumConsumption']) ? $this->contract['minimumConsumption'] : null,
-                    'billing_day' => $this->contract['billingDay'], // nullable
-                    'payment_types_id' => $this->contract['paymentType'], // nullable
-                    'observations' => isset($this->contract['observations']) ? $this->contract['observations'] : null,
-                    'user_created_at' => Auth::id(),
-                ]);
+            'years' => $this->contract['yearsOfContract'],
+            'from' => $this->contract['from'],
+            'till' => Carbon::create($this->contract['from'])->addYears($this->contract['yearsOfContract']), //nullable
+            'minimun_consumption' => isset($this->contract['minimumConsumption']) ? $this->contract['minimumConsumption'] : null,
+            'billing_day' => $this->contract['billingDay'], // nullable
+            'payment_types_id' => $this->contract['paymentType'], // nullable
+            'observations' => isset($this->contract['observations']) ? $this->contract['observations'] : null,
+            'user_created_at' => Auth::id(),
+        ]);
 
-                $idPlant = Plant::latest('id')->first();
-                $this->emit('createTrain', $idPlant);
-           /* });
+        $idPlant = Plant::latest('id')->first();
+        $this->emit('createTrain', $idPlant);
+        /* });
         } catch (Exception $e) {
             dd('ERROR TRY CATCH');
         }*/
