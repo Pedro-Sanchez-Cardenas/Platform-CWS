@@ -118,8 +118,9 @@ class CreatePlants extends Component
 
     public function store()
     {
-        try {
-            DB::transaction(function () {
+
+        /*try {
+            DB::transaction(function () {*/
                 PersonalitationPlant::create([
                     'cisterns_quantity' => isset($this->personalisations['cisterns']) ? $this->personalisations['cisterns'] : null,
 
@@ -137,7 +138,7 @@ class CreatePlants extends Component
                 $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
 
                 if (isset($this->plant['cover'])) {
-                    $this->plant['cover']->store('plant.covers');
+                    $urlCover = $this->plant['cover']->store('plant.covers');
                 }
 
                 if (isset($this->plant['handbooks'])) {
@@ -149,7 +150,7 @@ class CreatePlants extends Component
                 Plant::create([
                     'name' => $this->plant['name'],
                     'location' => $this->plant['location'],
-                    'cover_path' => isset($this->plant['cover']) ? $this->plant['cover'] : null, // nullable
+                    'cover_path' => isset($urlCover) ? $urlCover : null, // nullable
                     'installed_capacity' => 0,
                     'design_limit' => 0,
 
@@ -159,7 +160,7 @@ class CreatePlants extends Component
                     'countries_id' => $this->plant['country'],
                     'plant_types_id' => $this->plant['type'],
                     'operator' => $this->plant['operator'], //nullable
-                    'manager' => isset($this->plant['manager']) ? $this->plant['manager'] : null, // nullable
+                    'manager' => isset($this->plant['manager']) ? ($this->plant['manager'] != "" ? $this->plant['manager'] : null): null, // nullable
                     'user_created_at' => Auth::id()
                 ]);
 
@@ -187,10 +188,10 @@ class CreatePlants extends Component
 
                 $idPlant = Plant::latest('id')->first();
                 $this->emit('createTrain', $idPlant);
-            });
+           /* });
         } catch (Exception $e) {
             dd('ERROR TRY CATCH');
-        }
+        }*/
     }
 
     public function render()
